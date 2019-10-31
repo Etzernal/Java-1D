@@ -36,3 +36,6 @@ This JSON object describes the entire event entry. It can be retrieved to be pro
 * reminder[string]: set to null if no reminder. Otherwise, a string representing reminder datetime in the format of _"HH:mm EEEEE, MM dd yyyy"_ will be stored as value.
 * location[string]: optional field for user to key in location. This string will be used as a link to put into the Google map search field as query string.
 * description[string]: optional field for user to type in description of the event.
+
+## Learn about JSON
+https://www.digitalocean.com/community/tutorials/an-introduction-to-json 
