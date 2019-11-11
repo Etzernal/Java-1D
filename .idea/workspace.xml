@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6080a954-5075-420e-9562-be43f3fbd311" name="Default Changelist" comment="" />
+    <list default="true" id="6080a954-5075-420e-9562-be43f3fbd311" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java_1d/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java_1d/app/src/androidTest/java/com/example/hellowarudo/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java_1d/app/src/main/java/com/example/hellowarudo/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java_1d/app/src/test/java/com/example/hellowarudo/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_1d/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/java_1d/settings.gradle" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_29_x86" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java_1d/app/src/androidTest/java/com/example/java_1d/ExampleInstrumentedTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/java_1d/app/src/main/java/com/example/java_1d/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java_1d/app/src/test/java/com/example/java_1d/ExampleUnitTest.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>fab</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/java_1d/app/src/main/java/com/example/java_1d/MainActivity.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="85" />
@@ -30,6 +110,11 @@
               <item name="Java-1D" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java-1D" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Java-1D" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java-1D" type="462c0819:PsiDirectoryNode" />
+              <item name="java_1d" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -39,8 +124,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/java_1d" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
@@ -130,16 +216,41 @@
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info id="Resources Explorer" order="5" />
+      <window_info id="Resources Explorer" order="5" weight="0.32980832" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="4" />
+      <window_info anchor="bottom" id="Debug" order="5" />
+      <window_info anchor="bottom" id="Messages" order="6" visible="true" weight="0.3286119" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
     </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/java_1d/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java_1d/app/src/androidTest/java/com/example/java_1d/ExampleInstrumentedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java_1d/app/src/test/java/com/example/java_1d/ExampleUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java_1d/app/src/main/java/com/example/java_1d/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
