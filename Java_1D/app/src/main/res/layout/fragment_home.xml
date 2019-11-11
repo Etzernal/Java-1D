@@ -3,10 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="30sp"/>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="605dp"
+            android:orientation="vertical"/>
+
+
+            <CalendarView
+                android:id="@+id/calendarView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="264dp" />
+
 
 </RelativeLayout>

@@ -48,12 +48,16 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.action_home:
                             selectedFragment = new HomeFragment();
+                            break;
                         case R.id.action_capture:
                             selectedFragment = new CaptureFragment();
+                            break;
                         case R.id.action_gallery:
                             selectedFragment = new GalleryFragment();
+                            break;
                         case R.id.action_settings:
                             selectedFragment = new SettingsFragment();
+                            break;
 
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
