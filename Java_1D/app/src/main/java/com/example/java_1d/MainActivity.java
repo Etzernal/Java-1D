@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        startService(new Intent(this,NotificationService.class));
+    }
+
+    public void closeApp(View view){
+        finish();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
