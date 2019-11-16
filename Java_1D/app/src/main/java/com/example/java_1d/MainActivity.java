@@ -3,8 +3,6 @@ package com.example.java_1d;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,14 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     @Override
@@ -46,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         startService(new Intent(this,NotificationService.class));
     }
 
+
     public void closeApp(View view){
         finish();
+        startService(new Intent(this,NotificationService.class));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
