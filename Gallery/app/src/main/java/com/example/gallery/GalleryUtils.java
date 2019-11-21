@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -136,7 +137,7 @@ public class GalleryUtils{
      */
     void savePref(String prefName, String title, String location, String description,
                             String fromDate, String fromTime, String toDate, String toTime,
-                            Boolean reminder){
+                            Boolean reminder, String imagePath){
         SharedPreferences sharedPref = this.context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("title", title);
@@ -147,7 +148,9 @@ public class GalleryUtils{
         editor.putString("toDate", toDate);
         editor.putString("toTime", toTime);
         editor.putBoolean("reminder", reminder);
+        editor.putString("imgPath", imagePath);
         editor.apply();
+        Toast.makeText(this.context, "Entry saved with ID: " + prefName, Toast.LENGTH_SHORT).show();
     }
 
     /**

@@ -1,2 +1,2 @@
-include ':app', ':robot'
+include ':app',
 rootProject.name='Gallery'
