@@ -34,18 +34,25 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
     TextView date_tv;
+    TextView event_view;
     SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView date_tv = (TextView) view.findViewById(R.id.date_text);
         final CalendarView calendarView = (CalendarView) view.findViewById (R.id.calendar_view);
+        final TextView event_view = (TextView) view.findViewById(R.id.event_text);
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth));
+                date_tv.setSingleLine(false);
+                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+                        + " \n" );
+//                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+//                        + " \n" );
+                event_view.setText("7.30pm - " + "How to be a Carebear");
 //                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
                 calendarView.setVisibility(View.GONE);
             }
@@ -58,8 +65,14 @@ public class HomeFragment extends Fragment {
                         : View.VISIBLE);
             }
         });
-
-
+        event_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarView.setVisibility(calendarView.isShown()
+                        ? View.GONE
+                        : View.VISIBLE);
+            }
+        });
 
         return view;
     }
