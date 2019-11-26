@@ -64,38 +64,8 @@ public class HomeFragment extends Fragment {
 
     }
 
-<<<<<<< Updated upstream
-=======
-    SharedPreferences Event;
-    public void createEvent(){
-        try {
-            Event = this.getActivity().getSharedPreferences("Info", 0);
-        } catch (Exception exception) {
-            Event = null;
-        }
-    }
+    
 
-
-
-    public static String[] eventInfo(SharedPreferences pref) {
-        if(pref!=null) {
-            String[] out=new String[6];
-            String fromDate = pref.getString("fromDate", "");
-            String toDate = pref.getString("toDate", "");
-            out[5]= pref.getString("fromTime", "");
-            out[4]= pref.getString("toTime", "");
-            out[3]= pref.getString("title", "");
-            String fromDateDigits = stripNonDigits(fromDate);
-            out[2] = fromDateDigits.substring(4);
-            out[1] = fromDateDigits.substring(2, 4);
-            out[0]= fromDateDigits.substring(0, 2);
-            return out;
-        }
-        return null;
-
-    }
-
->>>>>>> Stashed changes
     public static String stripNonDigits(String input){
         String out="";
         for(int i = 0; i < input.length(); i++){
@@ -106,10 +76,8 @@ public class HomeFragment extends Fragment {
         }
         return out;
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+
     TextView date_tv;
     TextView event_view;
     SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
