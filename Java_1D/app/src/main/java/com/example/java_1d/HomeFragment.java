@@ -3,11 +3,14 @@ package com.example.java_1d;
 import android.app.ActionBar;
 import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.drm.DrmStore;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +67,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    
+
 
     public static String stripNonDigits(String input){
         String out="";
@@ -82,12 +85,34 @@ public class HomeFragment extends Fragment {
     TextView event_view;
     SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView date_tv = (TextView) view.findViewById(R.id.date_text);
-        final CalendarView calendarView = (CalendarView) view.findViewById (R.id.calendar_view);
-        final TextView event_view = (TextView) view.findViewById(R.id.event_text);
+        final TextView date_tv = view.findViewById(R.id.date_text);
+        final CalendarView calendarView = view.findViewById (R.id.calendar_view);
+        final TextView event_view = view.findViewById(R.id.event_text);
+        FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
+        FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
 
+
+        fabcam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(intent);
+            }
+        });
+
+        fabgal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("content://media/external/images/media/"));
+                startActivity(intent);
+            }
+        });
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -129,10 +154,12 @@ public class HomeFragment extends Fragment {
 //                        + " \n" );
 
 
-                    event_view.setText(textDisplayed);
+                event_view.setText(textDisplayed);
 //                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
 
-                calendarView.setVisibility(View.GONE); }
+                calendarView.setVisibility(View.GONE);
+
+            }
         });
 
 
@@ -152,6 +179,9 @@ public class HomeFragment extends Fragment {
                         : View.VISIBLE);
             }
         });
+
+
+
 
         return view;
     }
