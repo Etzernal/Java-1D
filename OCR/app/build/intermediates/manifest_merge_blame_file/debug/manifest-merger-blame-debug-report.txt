@@ -1,0 +1,278 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.gallery"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml
+10
+11    <uses-feature
+11-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:5:5-7:35
+12        android:name="android.hardware.camera"
+12-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:6:9-47
+13        android:required="true" />
+13-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:7:9-32
+14
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:9:5-65
+15-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:9:22-62
+16
+17    <uses-feature android:name="android.hardware.camera.autofocus" />
+17-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:11:5-70
+17-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:11:19-67
+18
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:13:5-81
+19-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:13:22-78
+20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+20-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:14:5-80
+20-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:14:22-77
+21    <uses-permission android:name="android.permission.INTERNET" />
+21-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:22:5-67
+21-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:22:22-64
+22    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+22-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:23:5-79
+22-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:23:22-76
+23    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+23-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:24:5-68
+23-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:24:22-65
+24    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+24-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:26:5-82
+24-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:26:22-79
+25    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+25-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:26:5-110
+25-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:26:22-107
+26
+27    <application
+27-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:16:5-68:19
+28        android:allowBackup="true"
+28-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:17:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/69630f9c41ae5ddb77c6a1f93a89f315/core-1.0.0/AndroidManifest.xml:22:18-86
+30        android:debuggable="true"
+31        android:icon="@mipmap/ic_launcher"
+31-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:18:9-43
+32        android:label="@string/app_name"
+32-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:19:9-41
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:20:9-54
+34        android:supportsRtl="true"
+34-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:21:9-35
+35        android:testOnly="true"
+36        android:theme="@style/AppTheme" >
+36-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:22:9-40
+37        <activity android:name="com.example.gallery.editOCR" />
+37-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:23:9-54
+37-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:23:19-42
+38        <activity android:name="com.example.gallery.TempPage" >
+38-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:24:9-35:20
+38-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:24:19-43
+39            <intent-filter>
+39-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:25:13-29:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:26:17-69
+40-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:26:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:28:17-77
+42-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:28:27-74
+43            </intent-filter>
+44            <intent-filter>
+44-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:30:13-34:29
+45                <action android:name="android.media.action.IMAGE_CAPTURE" />
+45-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:31:17-77
+45-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:31:25-74
+46
+47                <category android:name="android.intent.category.DEFAULT" />
+47-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:17-76
+47-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:27-73
+48            </intent-filter>
+49        </activity>
+50        <activity android:name="com.example.gallery.MainActivity" >
+50-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:36:9-42:20
+50-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:36:19-47
+51            <intent-filter>
+51-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:30:13-34:29
+52                <action android:name="android.media.action.IMAGE_CAPTURE" />
+52-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:31:17-77
+52-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:31:25-74
+53
+54                <category android:name="android.intent.category.DEFAULT" />
+54-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:17-76
+54-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:27-73
+55            </intent-filter>
+56        </activity>
+57        <activity android:name="com.example.gallery.GalleryUtils" >
+57-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:43:9-51:20
+57-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:43:19-47
+58            <intent-filter>
+58-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:44:13-50:29
+59                <action android:name="android.intent.action.INSERT" />
+59-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:45:17-71
+59-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:45:25-68
+60
+61                <data android:mimeType="vnd.android.cursor.dir/event" />
+61-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:47:17-73
+61-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:47:23-70
+62
+63                <category android:name="android.intent.category.DEFAULT" />
+63-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:17-76
+63-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:33:27-73
+64            </intent-filter>
+65        </activity>
+66        <activity android:name="com.example.gallery.CameraUtils" />
+66-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:52:9-58
+66-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:52:19-46
+67
+68        <provider
+68-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:54:9-62:20
+69            android:name="androidx.core.content.FileProvider"
+69-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:55:13-62
+70            android:authorities="com.example.android.fileprovider"
+70-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:56:13-67
+71            android:exported="false"
+71-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:57:13-37
+72            android:grantUriPermissions="true" >
+72-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:58:13-47
+73            <meta-data
+73-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:59:13-61:53
+74                android:name="android.support.FILE_PROVIDER_PATHS"
+74-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:60:17-67
+75                android:resource="@xml/file_path" />
+75-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:61:17-50
+76        </provider>
+77
+78        <meta-data
+78-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:64:9-66:35
+79            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+79-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:65:13-70
+80            android:value="ocr" />
+80-->/Users/keith1111/Desktop/Java-1D-yuxuan/Gallery/app/src/main/AndroidManifest.xml:66:13-32
+81        <!-- To use on device -->
+82        <service
+82-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:9:9-15:19
+83            android:name="com.google.firebase.components.ComponentDiscoveryService"
+83-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:10:13-84
+84            android:exported="false" >
+84-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:11:13-37
+85            <meta-data
+85-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:12:13-14:85
+86                android:name="com.google.firebase.components:com.google.firebase.ml.vision.VisionRegistrar"
+86-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:13:17-108
+87                android:value="com.google.firebase.components.ComponentRegistrar" />
+87-->[com.google.firebase:firebase-ml-vision:24.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/41fb90d918e2e97a71541d59b2ad2a5c/firebase-ml-vision-24.0.1/AndroidManifest.xml:14:17-82
+88            <meta-data
+88-->[com.google.firebase:firebase-ml-common:22.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/7c38319bb253128bf336918fd2ac2159/firebase-ml-common-22.0.1/AndroidManifest.xml:11:13-13:85
+89                android:name="com.google.firebase.components:com.google.firebase.ml.common.CommonComponentRegistrar"
+89-->[com.google.firebase:firebase-ml-common:22.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/7c38319bb253128bf336918fd2ac2159/firebase-ml-common-22.0.1/AndroidManifest.xml:12:17-117
+90                android:value="com.google.firebase.components.ComponentRegistrar" />
+90-->[com.google.firebase:firebase-ml-common:22.0.1] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/7c38319bb253128bf336918fd2ac2159/firebase-ml-common-22.0.1/AndroidManifest.xml:13:17-82
+91            <meta-data
+91-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:30:13-32:85
+92                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+92-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:31:17-139
+93                android:value="com.google.firebase.components.ComponentRegistrar" />
+93-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/e7a47fe6ab9e3dfc00bca59c6b021202/play-services-measurement-api-17.2.0/AndroidManifest.xml:32:17-82
+94            <meta-data
+94-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:32:13-34:85
+95                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+95-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:33:17-96
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:34:17-82
+97        </service>
+98
+99        <receiver
+99-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:37:9-44:20
+100            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+100-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:38:13-78
+101            android:exported="true"
+101-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:39:13-36
+102            android:permission="com.google.android.c2dm.permission.SEND" >
+102-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:40:13-73
+103            <intent-filter>
+103-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:41:13-43:29
+104                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+104-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:42:17-81
+104-->[com.google.firebase:firebase-iid:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/333a4b14f4a36b22a5b8879ae448e614/firebase-iid-19.0.0/AndroidManifest.xml:42:25-78
+105            </intent-filter>
+106        </receiver>
+107
+108        <activity
+108-->[com.google.android.gms:play-services-base:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/4fd23f1c0a576ef4883220502e5e1d72/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+109            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+109-->[com.google.android.gms:play-services-base:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/4fd23f1c0a576ef4883220502e5e1d72/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+110            android:exported="false"
+110-->[com.google.android.gms:play-services-base:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/4fd23f1c0a576ef4883220502e5e1d72/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+111            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+111-->[com.google.android.gms:play-services-base:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/4fd23f1c0a576ef4883220502e5e1d72/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+112
+113        <provider
+113-->[com.google.firebase:firebase-common:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/f47d93387ab382f8a82b6bd47a96f57b/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
+114            android:name="com.google.firebase.provider.FirebaseInitProvider"
+114-->[com.google.firebase:firebase-common:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/f47d93387ab382f8a82b6bd47a96f57b/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
+115            android:authorities="com.example.gallery.firebaseinitprovider"
+115-->[com.google.firebase:firebase-common:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/f47d93387ab382f8a82b6bd47a96f57b/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
+116            android:exported="false"
+116-->[com.google.firebase:firebase-common:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/f47d93387ab382f8a82b6bd47a96f57b/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
+117            android:initOrder="100" />
+117-->[com.google.firebase:firebase-common:19.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/f47d93387ab382f8a82b6bd47a96f57b/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
+118
+119        <receiver
+119-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:29:9-33:20
+120            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+120-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:30:13-85
+121            android:enabled="true"
+121-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:31:13-35
+122            android:exported="false" >
+122-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:32:13-37
+123        </receiver>
+124        <receiver
+124-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:34:9-42:20
+125            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+125-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:35:13-100
+126            android:enabled="true"
+126-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:36:13-35
+127            android:exported="true"
+127-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:37:13-36
+128            android:permission="android.permission.INSTALL_PACKAGES" >
+128-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:38:13-69
+129            <intent-filter>
+129-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:39:13-41:29
+130                <action android:name="com.android.vending.INSTALL_REFERRER" />
+130-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:40:17-79
+130-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:40:25-76
+131            </intent-filter>
+132        </receiver>
+133
+134        <service
+134-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:44:9-47:40
+135            android:name="com.google.android.gms.measurement.AppMeasurementService"
+135-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:45:13-84
+136            android:enabled="true"
+136-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:46:13-35
+137            android:exported="false" />
+137-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:47:13-37
+138        <service
+138-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:48:9-52:72
+139            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+139-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:49:13-87
+140            android:enabled="true"
+140-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:50:13-35
+141            android:exported="false"
+141-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:51:13-37
+142            android:permission="android.permission.BIND_JOB_SERVICE" />
+142-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/a2a37af89ff6b886094f25d7535393e0/play-services-measurement-17.2.0/AndroidManifest.xml:52:13-69
+143
+144        <meta-data
+144-->[com.google.android.gms:play-services-basement:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/9968e192ac4cfdea760e9ef9752a4c05/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+145            android:name="com.google.android.gms.version"
+145-->[com.google.android.gms:play-services-basement:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/9968e192ac4cfdea760e9ef9752a4c05/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+146            android:value="@integer/google_play_services_version" />
+146-->[com.google.android.gms:play-services-basement:17.0.0] /Users/keith1111/.gradle/caches/transforms-2/files-2.1/9968e192ac4cfdea760e9ef9752a4c05/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+147    </application>
+148
+149</manifest>
