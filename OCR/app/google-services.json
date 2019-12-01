@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "914482280736",
+    "firebase_url": "https://ml-kit-kronos.firebaseio.com",
+    "project_id": "ml-kit-kronos",
+    "storage_bucket": "ml-kit-kronos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914482280736:android:45ea5eb0fa97ce85f93f45",
+        "android_client_info": {
+          "package_name": "com.example.gallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914482280736-5u2sgt23c3h5livc7etrd5v6rndiakd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDARqG5HN662q0y45TSjbOlk5v3wtMrxug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914482280736-5u2sgt23c3h5livc7etrd5v6rndiakd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
