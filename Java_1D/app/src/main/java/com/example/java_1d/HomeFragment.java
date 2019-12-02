@@ -1,6 +1,7 @@
 package com.example.java_1d;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +15,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -34,9 +34,34 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 
 
 public class HomeFragment extends Fragment {
@@ -50,6 +75,27 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        Activity thisActivity;
+        if (context instanceof MainActivity){
+            thisActivity = (Activity) context;
+        }
+    }
+
+    private static final int REQUEST_PICTURE_CAPTURE = 1;
+    CameraUtils cameraUtils = new CameraUtils(super.getContext());
+    private static int RESULT_LOAD_IMG = 2;
+
+    SharedPreferences Event;
+    public void createEvent(){
+        try {
+            Event = this.getActivity().getSharedPreferences("Info", 0);
+        } catch (Exception exception) {
+            Event = null;
+        }
+    }
 
 
     public static String[] eventInfo(SharedPreferences pref) {
@@ -84,8 +130,9 @@ public class HomeFragment extends Fragment {
     }
 
 
-    TextView date_events;
+    TextView date_tv;
     TextView event_view;
+    SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -126,14 +173,6 @@ public class HomeFragment extends Fragment {
                     fabcam.setClickable(true);
                     isOpen = true;
                 }
-            }
-        });
-        fabcam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivity(intent);
             }
         });
 
@@ -216,6 +255,34 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+        fabcam.setOnClickListener((View v) -> {
+            take_photo();
+
+
+        });
+    }
+
+    public void take_photo() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            Log.d("MainActivity","I am heree");
+            File pictureFile;
+            try {
+                pictureFile = cameraUtils.createUniqueImageFilename();
+            } catch (IOException ex) {
+                Toast.makeText(getContext(),
+                        "Photo file can't be created, please try again",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } catch (NullPointerException exn){Toast.makeText(getContext(), "Cannot get external files directory", Toast.LENGTH_SHORT).show(); return;}
+            if (pictureFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        "com.example.android.fileprovider",
+                        pictureFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                getActivity().startActivityForResult(cameraIntent, REQUEST_PICTURE_CAPTURE);
+            }
+        }
     }
 
 
