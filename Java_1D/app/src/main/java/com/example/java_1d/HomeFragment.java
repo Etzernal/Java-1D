@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -81,29 +82,9 @@ public class HomeFragment extends Fragment {
     private static int RESULT_LOAD_IMG = 2;
 
 
-    File file;// = this.getActivity().getExternalFilesDir("");
-    File[] directoryListing ;//= file.listFiles();
-//    Log.i("fileDebug", file.toString());
-//    String myDirectoryPath =file.toString();
-//
-//    File dir = new File(myDirectoryPath); //place where sharedprefs are stored
+    File file;
+    File[] directoryListing ;
 
-
-
-//    public ArrayList<String> loop_through_file(File[] directoryListing) {
-//        if (directoryListing != null) {
-//            for (File child : directoryListing) {
-//                //read pref name
-//                //add child to output list
-//                //return list of all shared prefs
-//            }
-//        } else {
-//            //return null
-//        }
-//        return null;
-//    }
-
-    //    ArrayList<String> list_SP= loop_through_file(directoryListing);
     ArrayList<SharedPreferences> Events=new ArrayList<>(); //list of shared prefs
 
 
@@ -136,18 +117,17 @@ public class HomeFragment extends Fragment {
 //        if(pref!=null) {
         String[] out=new String[6];
         String fromDate = pref.getString("fromDate", "");
+        Log.i("fileDebug",fromDate);
         String toDate = pref.getString("toDate", "");
         out[5]= pref.getString("fromTime", "");
         out[4]= pref.getString("toTime", "");
         out[3]= pref.getString("title", "");
         String fromDateDigits = stripNonDigits(fromDate);
-        out[2] = fromDateDigits.substring(4);
-        out[1] = fromDateDigits.substring(2, 4);
+        Log.i("fileDebug",fromDateDigits);
+        out[2] = fromDateDigits.substring(5,9);
+        out[1] = fromDateDigits.substring(2,5);
         out[0]= fromDateDigits.substring(0, 2);
         return out;
-//        }
-//        return null;
-
     }
 
 
@@ -155,12 +135,45 @@ public class HomeFragment extends Fragment {
     public static String stripNonDigits(String input){
         String out="";
         for(int i = 0; i < input.length(); i++){
-            final char c = input.charAt(i);
-            if(c > 47 && c < 58){
-                out+=i;
+            char c = input.charAt(i);
+            if(Character.isLetterOrDigit(c)){
+                out+=Character.toString(c);
             }
         }
+        Log.i("fileDebug",out+"this is the output");
         return out;
+    }
+
+    public static HashMap<String, Integer> Months(){
+        HashMap<String, Integer> Months=new HashMap<>();
+        Months.put("Jan",1);
+        Months.put("Feb",2);
+        Months.put("Mar",3);
+        Months.put("Apr",4);
+        Months.put("May",5);
+        Months.put("Jun",6);
+        Months.put("Jul",7);
+        Months.put("Aug",8);
+        Months.put("Sep",9);
+        Months.put("Oct",10);
+        Months.put("Nov",11);
+        Months.put("Dec",12);
+        return Months;
+    }
+
+    final static HashMap<String, Integer> Months=Months();
+
+
+
+    public static Integer toMonth(String month){
+        Log.d("fileDebug",month+"mohtyyy");
+        Integer out=Months.get(month);
+        if(out==null){
+            Log.d("fileDebug", "month is null");
+        }
+
+        return out;
+
     }
 
 
@@ -176,6 +189,9 @@ public class HomeFragment extends Fragment {
         final TextView event_view = view.findViewById(R.id.event_text);
         FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
         FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
+        file=this.getActivity().getExternalFilesDir("");
+        Log.d("fileDebug", "file path here: "+file.toString());
+        directoryListing=file.listFiles();
 
 
         fabcam.setOnClickListener((View v) -> {
@@ -193,39 +209,47 @@ public class HomeFragment extends Fragment {
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            String textDisplayed="";
-
-//            public String[] storeInfo(SharedPreferences pref){
-//                if (pref!=null){
-//                    String[] info=new String[6];
-//                    String fromDate = pref.getString("fromDate", "");
-//                    String toDate = pref.getString("toDate", "");
-//                    info[1] = pref.getString("fromTime", "");
-//                    info[2] = pref.getString("toTime", "");
-//                    info[0] = pref.getString("title", "");
-//                    String fromDateDigits= stripNonDigits(fromDate);
-//                    info[5]=fromDateDigits.substring(4);
-//                    info[4]=fromDateDigits.substring(2,4);
-//                    info[3]=fromDateDigits.substring(0,2);
-//                    return info;
-//                }
-//                return null;
-//            }
-
 
 
 
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String textDisplayed="";
                 createEvents();
                 allEventInfo();
+                Log.d("fileDebug","before event info");
+                for(File i:directoryListing){
+                    Log.d("fileDebug",i.getName());
+                    Log.d("fileDebug","hi");
+                }
+
+                Log.d("fileDebug",directoryListing.toString());
+
+                Log.d("fileDebug", Integer.toString(directoryListing.length));
+                //Log.d("fileDebug",Events.toString());
 
 
                 for(String[] info:allEventInfo){
-                    if(String.valueOf(year).equals(info[5]) && String.valueOf(month + 1).equals(info[4])&& String.valueOf(dayOfMonth).equals(info[3])){
-                        textDisplayed+= info[0]+":"+info[1]+"-"+info[2]+"\n";
+
+//                    Log.d("fileDebug",String.valueOf(year));
+//                    Log.d("fileDebug",info[2]);
+//                    Log.d("fileDebug",String.valueOf(month + 1));
+//                    Log.d("fileDebug",String.valueOf(toMonth(info[1])));
+//                    Log.d("fileDebug",String.valueOf(dayOfMonth));
+//                    Log.d("fileDebug",info[0]);
+                    String day=String.valueOf(dayOfMonth);
+                    if (dayOfMonth<10){
+                        day="0"+String.valueOf(dayOfMonth);
                     }
+
+                    if(String.valueOf(year).equals(info[2]) && String.valueOf(month + 1).equals(String.valueOf(toMonth(info[1])))&& day.equals(info[0])){
+
+                        textDisplayed= info[3]+":"+info[5]+"-"+info[4]+"\n";
+                        Log.d("fileDebug",textDisplayed+"dis my text ya");
+                    }
+                    else{Log.d("fileDebug","soemthign went wrong");}
                 }
+
 
 
                 date_tv.setSingleLine(false);
@@ -242,7 +266,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
         date_tv.setOnClickListener(new View.OnClickListener() {
             @Override
