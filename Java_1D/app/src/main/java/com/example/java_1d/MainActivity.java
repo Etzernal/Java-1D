@@ -3,20 +3,16 @@ package com.example.java_1d;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener((navListener));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        bottomNav.setSelectedItemId(R.id.action_home);
         SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -51,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
+                        case R.id.action_drafts:
+                            selectedFragment = new DraftsFragment();
+                            break;
                         case R.id.action_home:
                             selectedFragment = new HomeFragment();
                             break;
-                        case R.id.action_capture:
-                            selectedFragment = new CaptureFragment();
-                            break;
-                        case R.id.action_gallery:
-                            selectedFragment = new GalleryFragment();
-                            break;
+//                        case R.id.action_capture:
+//                            selectedFragment = new CaptureFragment();
+//                            break;
                         case R.id.action_settings:
                             selectedFragment = new SettingsFragment();
                             break;
