@@ -148,7 +148,7 @@ public class HomeFragment extends Fragment {
                 else{textDisplayed="";}}
 
                 date_tv.setSingleLine(false);
-                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+                date_tv.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
                         + " \n" );
 //                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
