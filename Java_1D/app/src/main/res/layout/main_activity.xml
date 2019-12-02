@@ -39,7 +39,5 @@
         app:menu="@menu/main_nav" />
 
 
-
-
 </RelativeLayout>
 
