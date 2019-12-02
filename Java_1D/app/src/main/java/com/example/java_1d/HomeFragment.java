@@ -37,6 +37,7 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,31 +80,73 @@ public class HomeFragment extends Fragment {
     CameraUtils cameraUtils = new CameraUtils(getActivity());
     private static int RESULT_LOAD_IMG = 2;
 
-    SharedPreferences Event;
-    public void createEvent(){
-        try {
-            Event = this.getActivity().getSharedPreferences("Info", 0);
-        } catch (Exception exception) {
-            Event = null;
+
+    File file;// = this.getActivity().getExternalFilesDir("");
+    File[] directoryListing ;//= file.listFiles();
+//    Log.i("fileDebug", file.toString());
+//    String myDirectoryPath =file.toString();
+//
+//    File dir = new File(myDirectoryPath); //place where sharedprefs are stored
+
+
+
+//    public ArrayList<String> loop_through_file(File[] directoryListing) {
+//        if (directoryListing != null) {
+//            for (File child : directoryListing) {
+//                //read pref name
+//                //add child to output list
+//                //return list of all shared prefs
+//            }
+//        } else {
+//            //return null
+//        }
+//        return null;
+//    }
+
+    //    ArrayList<String> list_SP= loop_through_file(directoryListing);
+    ArrayList<SharedPreferences> Events=new ArrayList<>(); //list of shared prefs
+
+
+    public void createEvents() {
+        if (directoryListing != null) {
+            Log.d("fileDebug","first");
+            for (File i : directoryListing) {
+                try {
+                    SharedPreferences Event = this.getActivity().getSharedPreferences(i.getName(), 0);
+                    if(Event!=null){
+                        Events.add(Event);}
+                } catch (Exception exception) {
+                    Log.d("fileDebug","Exception");
+                }
+            }
+        }
+    }
+    ArrayList<String[]> allEventInfo=new ArrayList<>();
+
+    public void allEventInfo(){
+        for(SharedPreferences i: Events){
+            allEventInfo.add(eventInfo(i));
+            Log.d("fileDebug","i m here");
         }
     }
 
 
+
     public static String[] eventInfo(SharedPreferences pref) {
-        if(pref!=null) {
-            String[] out=new String[6];
-            String fromDate = pref.getString("fromDate", "");
-            String toDate = pref.getString("toDate", "");
-            out[5]= pref.getString("fromTime", "");
-            out[4]= pref.getString("toTime", "");
-            out[3]= pref.getString("title", "");
-            String fromDateDigits = stripNonDigits(fromDate);
-            out[2] = fromDateDigits.substring(4);
-            out[1] = fromDateDigits.substring(2, 4);
-            out[0]= fromDateDigits.substring(0, 2);
-            return out;
-        }
-        return null;
+//        if(pref!=null) {
+        String[] out=new String[6];
+        String fromDate = pref.getString("fromDate", "");
+        String toDate = pref.getString("toDate", "");
+        out[5]= pref.getString("fromTime", "");
+        out[4]= pref.getString("toTime", "");
+        out[3]= pref.getString("title", "");
+        String fromDateDigits = stripNonDigits(fromDate);
+        out[2] = fromDateDigits.substring(4);
+        out[1] = fromDateDigits.substring(2, 4);
+        out[0]= fromDateDigits.substring(0, 2);
+        return out;
+//        }
+//        return null;
 
     }
 
@@ -150,39 +193,43 @@ public class HomeFragment extends Fragment {
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            String textDisplayed;
+            String textDisplayed="";
 
-            public String[] storeInfo(SharedPreferences pref){
-                if (pref!=null){
-                    String[] info=new String[6];
-                    String fromDate = pref.getString("fromDate", "");
-                    String toDate = pref.getString("toDate", "");
-                    info[1] = pref.getString("fromTime", "");
-                    info[2] = pref.getString("toTime", "");
-                    info[0] = pref.getString("title", "");
-                    String fromDateDigits= stripNonDigits(fromDate);
-                    info[5]=fromDateDigits.substring(4);
-                    info[4]=fromDateDigits.substring(2,4);
-                    info[3]=fromDateDigits.substring(0,2);
-                    return info;
-                }
-                return null;
-            }
+//            public String[] storeInfo(SharedPreferences pref){
+//                if (pref!=null){
+//                    String[] info=new String[6];
+//                    String fromDate = pref.getString("fromDate", "");
+//                    String toDate = pref.getString("toDate", "");
+//                    info[1] = pref.getString("fromTime", "");
+//                    info[2] = pref.getString("toTime", "");
+//                    info[0] = pref.getString("title", "");
+//                    String fromDateDigits= stripNonDigits(fromDate);
+//                    info[5]=fromDateDigits.substring(4);
+//                    info[4]=fromDateDigits.substring(2,4);
+//                    info[3]=fromDateDigits.substring(0,2);
+//                    return info;
+//                }
+//                return null;
+//            }
 
 
 
 
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String[] info=eventInfo(Event);
-                if (info!=null){
+                createEvents();
+                allEventInfo();
+
+
+                for(String[] info:allEventInfo){
                     if(String.valueOf(year).equals(info[5]) && String.valueOf(month + 1).equals(info[4])&& String.valueOf(dayOfMonth).equals(info[3])){
-                        textDisplayed= info[0]+":"+info[1]+"-"+info[2];
+                        textDisplayed+= info[0]+":"+info[1]+"-"+info[2]+"\n";
                     }
-                else{textDisplayed="";}}
+                }
+
 
                 date_tv.setSingleLine(false);
-                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+                date_tv.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
                         + " \n" );
 //                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
