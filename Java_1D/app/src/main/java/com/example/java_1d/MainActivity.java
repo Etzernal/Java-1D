@@ -14,8 +14,15 @@ import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Text user_email;
+    private String password = "password";
+    private String username = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.action_settings:
                             selectedFragment = new SettingsFragment();
+//                            final Button update = findViewById(R.id.settings_update_button);
+//                            update.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    //no idea what to put in here
+//                                }
+//                            });
+
                             break;
 
                     }

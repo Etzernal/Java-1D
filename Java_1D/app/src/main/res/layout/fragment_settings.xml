@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/settings_profile_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -33,7 +33,7 @@
                 android:layout_marginBottom="10pt"/>
 
             <TextView
-                android:id="@+id/login_email"
+                android:id="@+id/settings_login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10pt"
@@ -41,7 +41,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/email_input"
+                android:id="@+id/settings_email_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10pt"
@@ -51,7 +51,7 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/login_password"
+                android:id="@+id/settings_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10pt"
@@ -59,13 +59,21 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/pw_input"
+                android:id="@+id/settings_pw_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10pt"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:text="password"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/settings_update_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10pt"
+                android:text="Update Preferences"
                 android:textSize="20sp"/>
 
 
