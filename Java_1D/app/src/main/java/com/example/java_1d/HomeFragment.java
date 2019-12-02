@@ -14,6 +14,8 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ import java.util.Locale;
 
 
 public class HomeFragment extends Fragment {
+    private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     SharedPreferences Event;
     public void createEvent(){
         try {
@@ -91,10 +94,37 @@ public class HomeFragment extends Fragment {
         final TextView date_tv = view.findViewById(R.id.date_text);
         final CalendarView calendarView = view.findViewById (R.id.calendar_view);
         final TextView event_view = view.findViewById(R.id.event_text);
-        FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
-        FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
+        final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
+        final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
+        final FloatingActionButton fabadd = view.findViewById(R.id.floatingActionButtonAdd);
 
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_clock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_clkwise);
+        fab_anticlock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_anticlkwise);
 
+        
+        fabadd.setOnClickListener(new View.OnClickListener() {
+            boolean isOpen = false;
+            @Override
+            public void onClick(View v) {
+                if (isOpen) {
+                    fabgal.startAnimation(fab_close);
+                    fabcam.startAnimation(fab_close);
+                    fabadd.startAnimation(fab_anticlock);
+                    fabgal.setClickable(false);
+                    fabcam.setClickable(false);
+                    isOpen = false;
+                } else {
+                    fabgal.startAnimation(fab_open);
+                    fabcam.startAnimation(fab_open);
+                    fabadd.startAnimation(fab_clock);
+                    fabgal.setClickable(true);
+                    fabcam.setClickable(true);
+                    isOpen = true;
+                }
+            }
+        });
         fabcam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
