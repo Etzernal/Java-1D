@@ -84,14 +84,14 @@ public class HomeFragment extends Fragment {
     }
 
 
-    TextView date_tv;
+    TextView date_events;
     TextView event_view;
-    SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView date_tv = view.findViewById(R.id.date_text);
+        final TextView date_select = view.findViewById(R.id.selected_date);
+        final TextView date_events = view.findViewById(R.id.date_events);
         final CalendarView calendarView = view.findViewById (R.id.calendar_view);
         final TextView event_view = view.findViewById(R.id.event_text);
         final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
@@ -102,6 +102,9 @@ public class HomeFragment extends Fragment {
         fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
         fab_clock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_clkwise);
         fab_anticlock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_anticlkwise);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        date_select.setText(sdf.format(calendarView.getDate()));
 
         
         fabadd.setOnClickListener(new View.OnClickListener() {
@@ -177,23 +180,22 @@ public class HomeFragment extends Fragment {
                     }
                 else{textDisplayed="";}}
 
-                date_tv.setSingleLine(false);
-                date_tv.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
+                date_select.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
                         + " \n" );
-//                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+//                date_events.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
 
-
-                event_view.setText(textDisplayed);
-//                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
-
-                calendarView.setVisibility(View.GONE);
+//
+//                event_view.setText(textDisplayed);
+////                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
+//
+//                calendarView.setVisibility(View.GONE);
 
             }
         });
 
 
-        date_tv.setOnClickListener(new View.OnClickListener() {
+        date_events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendarView.setVisibility(calendarView.isShown()
@@ -201,14 +203,14 @@ public class HomeFragment extends Fragment {
                         : View.VISIBLE);
             }
         });
-        event_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendarView.setVisibility(calendarView.isShown()
-                        ? View.GONE
-                        : View.VISIBLE);
-            }
-        });
+//        event_view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                calendarView.setVisibility(calendarView.isShown()
+//                        ? View.GONE
+//                        : View.VISIBLE);
+//            }
+//        });
 
 
 
