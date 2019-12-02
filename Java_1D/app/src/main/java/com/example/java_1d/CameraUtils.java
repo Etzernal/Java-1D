@@ -25,12 +25,14 @@ public class CameraUtils{
         this.context = context;
     }
 
-    public File createUniqueImageFilename() throws IOException {
+    public File createUniqueImageFilename(File storageDir) throws IOException {
         // Create an image file name
+        Log.d("myMessage", "Im inside createfile");
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date());
         String imageFileName = "KRONOS_" + timeStamp + "_";
-
-        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        Log.d("myMessage", imageFileName);
+        Log.d("myMessage", "got storage directory");
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -39,7 +41,7 @@ public class CameraUtils{
 
         // Save a file: path for use with ACTION_VIEW intents
         imgFilePath = image.getAbsolutePath();
-        Log.i("myMessage", "Pic is going to be stored to: " + imgFilePath);
+        Log.d("myMessage", "Pic is going to be stored to: " + imgFilePath);
         return image;
     }
 

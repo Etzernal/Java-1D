@@ -225,7 +225,8 @@ public class Form extends AppCompatActivity {
         if (cameraIntent.resolveActivity(getPackageManager()) != null) {
             File pictureFile;
             try {
-                pictureFile = cameraUtils.createUniqueImageFilename();
+                File f = this.getExternalFilesDir("");
+                pictureFile = cameraUtils.createUniqueImageFilename(f);
             } catch (IOException ex) {
                 Toast.makeText(this,
                         "Photo file can't be created, please try again",

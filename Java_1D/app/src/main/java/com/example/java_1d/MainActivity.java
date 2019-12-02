@@ -110,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("myMessage", String.format("Request code %d, Result code %d, Data: %s", requestCode, resultCode, data.toString()));
+        Log.d("myMessage", String.format("Request code %d, Result code %d, Data: %s", requestCode, resultCode, data.toString()));
         super.onActivityResult(requestCode, resultCode, data);
         final ImageView thumbnailImg = (ImageView) findViewById(R.id.thumbnail);
 
         if (requestCode == REQUEST_PICTURE_CAPTURE && resultCode == RESULT_OK) {
+            Log.d("myMessage", "Im in onActivityResult take photo");
             File imgFile = new File(cameraUtils.imgFilePath);
             Uri photoURI = Uri.fromFile(imgFile);
             Toast.makeText(this, "Photo saved to " + cameraUtils.imgFilePath, Toast.LENGTH_LONG).show();
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-            Log.i("myMessage", "Switching intent to OCR...");
+            Log.d("myMessage", "Switching intent to OCR...");
             final Uri imageUri = data.getData();
             Intent changePage = new Intent(MainActivity.this, EditOCR.class);
             changePage.putExtra("Image",imageUri.toString());

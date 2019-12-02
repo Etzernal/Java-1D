@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
     }
 
     private static final int REQUEST_PICTURE_CAPTURE = 1;
-    CameraUtils cameraUtils = new CameraUtils(super.getContext());
+    CameraUtils cameraUtils = new CameraUtils(getActivity());
     private static int RESULT_LOAD_IMG = 2;
 
     SharedPreferences Event;
@@ -219,10 +219,11 @@ public class HomeFragment extends Fragment {
     public void take_photo() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            Log.d("MainActivity","I am heree");
+            Log.d("myMessage","trying to capture photo");
             File pictureFile;
             try {
-                pictureFile = cameraUtils.createUniqueImageFilename();
+                File f = getActivity().getExternalFilesDir("");
+                pictureFile = cameraUtils.createUniqueImageFilename(f);
             } catch (IOException ex) {
                 Toast.makeText(getContext(),
                         "Photo file can't be created, please try again",
@@ -230,8 +231,8 @@ public class HomeFragment extends Fragment {
                 return;
             } catch (NullPointerException exn){Toast.makeText(getContext(), "Cannot get external files directory", Toast.LENGTH_SHORT).show(); return;}
             if (pictureFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getContext(),
-                        "com.example.android.fileprovider",
+                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                        "com.example.java_1d.fileprovider",
                         pictureFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 getActivity().startActivityForResult(cameraIntent, REQUEST_PICTURE_CAPTURE);

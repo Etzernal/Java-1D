@@ -39,6 +39,7 @@ import com.joestelmach.natty.Parser;
 
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -116,7 +117,8 @@ public class EditOCR extends AppCompatActivity {
             endTime = getDateTime(finalText).get(3);
 
             //Store into sharedpreference
-            String prefName = startDate;
+            File photofile = new File(fileUri.toString());
+            String prefName = photofile.getName();
             SharedPreferences sharedPref = getSharedPreferences(prefName, 0); // 0 for private mode
             SharedPreferences.Editor editor = sharedPref.edit();
             if (startDate != null){
@@ -134,7 +136,7 @@ public class EditOCR extends AppCompatActivity {
             editor.putString("imgPath", image_path);
             editor.apply();
             Intent doneintent = new Intent(EditOCR.this, Form.class);
-            doneintent.putExtra("prefName", startDate);
+            doneintent.putExtra("prefName", prefName);
             startActivity(doneintent);
 
 
