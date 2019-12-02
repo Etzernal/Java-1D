@@ -15,6 +15,8 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,14 +68,7 @@ import java.io.InputStream;
 
 public class HomeFragment extends Fragment {
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
-    SharedPreferences Event;
-    public void createEvent(){
-        try {
-            Event = this.getActivity().getSharedPreferences("Info", 0);
-        } catch (Exception exception) {
-            Event = null;
-        }
-    }
+
 
     @Override
     public void onAttach(Context context){
@@ -139,7 +134,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView date_select = view.findViewById(R.id.selected_date);
         final TextView date_events = view.findViewById(R.id.date_events);
-        final CalendarView calendarView = view.findViewById (R.id.calendar_view);
+        final CalendarView calendarView = view.findViewById(R.id.calendar_view);
         final TextView event_view = view.findViewById(R.id.event_text);
         final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
         final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
@@ -153,9 +148,10 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         date_select.setText(sdf.format(calendarView.getDate()));
 
-        
+
         fabadd.setOnClickListener(new View.OnClickListener() {
             boolean isOpen = false;
+
             @Override
             public void onClick(View v) {
                 if (isOpen) {
@@ -190,37 +186,37 @@ public class HomeFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             String textDisplayed;
 
-            public String[] storeInfo(SharedPreferences pref){
-                if (pref!=null){
-                    String[] info=new String[6];
+            public String[] storeInfo(SharedPreferences pref) {
+                if (pref != null) {
+                    String[] info = new String[6];
                     String fromDate = pref.getString("fromDate", "");
                     String toDate = pref.getString("toDate", "");
                     info[1] = pref.getString("fromTime", "");
                     info[2] = pref.getString("toTime", "");
                     info[0] = pref.getString("title", "");
-                    String fromDateDigits= stripNonDigits(fromDate);
-                    info[5]=fromDateDigits.substring(4);
-                    info[4]=fromDateDigits.substring(2,4);
-                    info[3]=fromDateDigits.substring(0,2);
+                    String fromDateDigits = stripNonDigits(fromDate);
+                    info[5] = fromDateDigits.substring(4);
+                    info[4] = fromDateDigits.substring(2, 4);
+                    info[3] = fromDateDigits.substring(0, 2);
                     return info;
                 }
                 return null;
             }
 
 
-
-
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String[] info=eventInfo(Event);
-                if (info!=null){
-                    if(String.valueOf(year).equals(info[5]) && String.valueOf(month + 1).equals(info[4])&& String.valueOf(dayOfMonth).equals(info[3])){
-                        textDisplayed= info[0]+":"+info[1]+"-"+info[2];
+                String[] info = eventInfo(Event);
+                if (info != null) {
+                    if (String.valueOf(year).equals(info[5]) && String.valueOf(month + 1).equals(info[4]) && String.valueOf(dayOfMonth).equals(info[3])) {
+                        textDisplayed = info[0] + ":" + info[1] + "-" + info[2];
+                    } else {
+                        textDisplayed = "";
                     }
-                else{textDisplayed="";}}
+                }
 
                 date_select.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
-                        + " \n" );
+                        + " \n");
 //                date_events.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
 
@@ -252,14 +248,14 @@ public class HomeFragment extends Fragment {
 //        });
 
 
-
-
-        return view;
-        fabcam.setOnClickListener((View v) -> {
-            take_photo();
-
-
+        fabcam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                take_photo();
+                return;
+            }
         });
+        return view;
     }
 
     public void take_photo() {
