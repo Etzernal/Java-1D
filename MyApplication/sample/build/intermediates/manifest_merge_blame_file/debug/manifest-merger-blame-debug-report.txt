@@ -1,0 +1,67 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.croppersample"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="14"
+8-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:6:5-64
+11-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:6:22-62
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:7:5-79
+12-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:7:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:8:5-80
+13-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->[:tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:5-67
+14-->[:tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:22-64
+15
+16    <application
+16-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:11:5-30:19
+17        android:allowBackup="false"
+17-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:12:9-36
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f01b27bb220ecb79298884ef36a7a2fb\core-1.1.0\AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:13:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:14:9-41
+22        android:testOnly="true"
+23        android:theme="@style/Theme.AppCompat" >
+23-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:15:9-47
+24        <activity
+24-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:16:9-24:20
+25            android:name="com.vish.imagetotext.ocr.sample.main"
+25-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:17:13-64
+26            android:label="@string/app_title" >
+26-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:18:13-46
+27            <intent-filter>
+27-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:19:13-23:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:20:17-68
+28-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:20:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:22:17-76
+30-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:22:27-74
+31            </intent-filter>
+32        </activity>
+33        <activity android:name="com.vish.imagetotext.ocr.sample.CropResultActivity" >
+33-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:25:9-26:20
+33-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:25:19-84
+34        </activity>
+35        <activity android:name="com.vish.imagetotext.ocr.CropImageActivity" >
+35-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:27:9-28:20
+35-->C:\Users\Administrator\Desktop\MyApplication\sample\src\main\AndroidManifest.xml:27:19-76
+36        </activity>
+37    </application>
+38
+39</manifest>

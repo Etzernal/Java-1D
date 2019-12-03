@@ -1,0 +1,43 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.googlecode.tesseract.android.test" >
+4
+5    <uses-sdk
+5-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:5:5-74
+6        android:minSdkVersion="14"
+6-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:5:15-41
+7        android:targetSdkVersion="29" />
+7-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:5:42-71
+8
+9    <instrumentation
+9-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:11:5-15:87
+10        android:name="android.test.InstrumentationTestRunner"
+10-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:11:22-75
+11        android:functionalTest="false"
+11-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:14:22-52
+12        android:handleProfiling="false"
+12-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:13:22-53
+13        android:label="Tests for com.googlecode.tesseract.android.test"
+13-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:15:22-85
+14        android:targetPackage="com.googlecode.tesseract.android.test" />
+14-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:12:22-83
+15
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:5-81
+16-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:5-80
+17-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:22-77
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:5-67
+18-->[__tested_artifact__::tess-two] C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:22-64
+19
+20    <application android:debuggable="true" >
+20-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:7:5-9:19
+20-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:7:18-43
+21        <uses-library android:name="android.test.runner" />
+21-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:8:9-60
+21-->C:\Users\Administrator\Desktop\MyApplication\tess-two\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3266681187794910023.xml:8:23-57
+22    </application>
+23
+24</manifest>

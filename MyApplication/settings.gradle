@@ -1,0 +1,4 @@
+include ':app', ':cropper',':tess-two'
+include ':sample'
+include ':quick-start'
+rootProject.name='My Application'
