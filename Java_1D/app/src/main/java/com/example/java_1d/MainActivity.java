@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,10 +31,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PICTURE_CAPTURE = 1;
     CameraUtils cameraUtils = new CameraUtils(this);
     private static int RESULT_LOAD_IMG = 2;
+
+    private Text user_email;
+    private String password = "password";
+    private String username = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +56,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener((navListener));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        bottomNav.setSelectedItemId(R.id.action_home);
         SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -67,17 +68,22 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
+                        case R.id.action_drafts:
+                            selectedFragment = new DraftsFragment();
+                            break;
                         case R.id.action_home:
                             selectedFragment = new HomeFragment();
                             break;
-                        case R.id.action_capture:
-                            selectedFragment = new CaptureFragment();
-                            break;
-                        case R.id.action_gallery:
-                            selectedFragment = new GalleryFragment();
-                            break;
                         case R.id.action_settings:
                             selectedFragment = new SettingsFragment();
+//                            final Button update = findViewById(R.id.settings_update_button);
+//                            update.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    //no idea what to put in here
+//                                }
+//                            });
+
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();

@@ -15,6 +15,8 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +69,8 @@ import java.util.Map;
 
 
 public class HomeFragment extends Fragment {
+    private Animation fab_open, fab_close, fab_clock, fab_anticlock;
+
 
     @Override
     public void onAttach(Context context){
@@ -189,29 +193,75 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView date_tv = view.findViewById(R.id.date_text);
-        final CalendarView calendarView = view.findViewById (R.id.calendar_view);
+        final TextView date_select = view.findViewById(R.id.selected_date);
+        final TextView date_events = view.findViewById(R.id.date_events);
+        final CalendarView calendarView = view.findViewById(R.id.calendar_view);
         final TextView event_view = view.findViewById(R.id.event_text);
-        FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
-        FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
+        final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
+        final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
+        final FloatingActionButton fabadd = view.findViewById(R.id.floatingActionButtonAdd);
+
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_clock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_clkwise);
+        fab_anticlock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_anticlkwise);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        date_select.setText(sdf.format(calendarView.getDate()));
 
 
-        fabcam.setOnClickListener((View v) -> {
-            take_photo();
+        fabadd.setOnClickListener(new View.OnClickListener() {
+            boolean isOpen = false;
 
-
+            @Override
+            public void onClick(View v) {
+                if (isOpen) {
+                    fabgal.startAnimation(fab_close);
+                    fabcam.startAnimation(fab_close);
+                    fabadd.startAnimation(fab_anticlock);
+                    fabgal.setClickable(false);
+                    fabcam.setClickable(false);
+                    isOpen = false;
+                } else {
+                    fabgal.startAnimation(fab_open);
+                    fabcam.startAnimation(fab_open);
+                    fabadd.startAnimation(fab_clock);
+                    fabgal.setClickable(true);
+                    fabcam.setClickable(true);
+                    isOpen = true;
+                }
+            }
         });
 
-        fabgal.setOnClickListener((View v) -> {
-            Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-            photoPickerIntent.setType("image/*");
-            getActivity().startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
-
+        fabgal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("content://media/external/images/media/"));
+                startActivity(intent);
+            }
         });
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
+            public String[] storeInfo(SharedPreferences pref){
+                if (pref!=null){
+                    String[] info=new String[6];
+                    String fromDate = pref.getString("fromDate", "");
+                    String toDate = pref.getString("toDate", "");
+                    info[1] = pref.getString("fromTime", "");
+                    info[2] = pref.getString("toTime", "");
+                    info[0] = pref.getString("title", "");
+                    String fromDateDigits= stripNonDigits(fromDate);
+                    info[5]=fromDateDigits.substring(4);
+                    info[4]=fromDateDigits.substring(2,4);
+                    info[3]=fromDateDigits.substring(0,2);
+                    return info;
+                }
+                return null;
+            }
 
 
             @Override
@@ -236,6 +286,7 @@ public class HomeFragment extends Fragment {
                     if (dayOfMonth<10){
                         day="0"+String.valueOf(dayOfMonth);
                     }
+                else{textDisplayed="";}}
 
                     if(String.valueOf(year).equals(info[2]) && String.valueOf(month + 1).equals(String.valueOf(toMonth(info[1])))&& day.equals(info[0])){
 
@@ -259,11 +310,11 @@ public class HomeFragment extends Fragment {
 //                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
 
-
-                event_view.setText(textDisplayed);
-//                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
-
-                calendarView.setVisibility(View.GONE);
+//
+//                event_view.setText(textDisplayed);
+////                Toast.makeText(getContext(), dayOfMonth + "-" + month + "-" + year, Toast.LENGTH_SHORT).show();
+//
+//                calendarView.setVisibility(View.GONE);
 
             }
         });
@@ -276,12 +327,21 @@ public class HomeFragment extends Fragment {
                         : View.VISIBLE);
             }
         });
-        event_view.setOnClickListener(new View.OnClickListener() {
+//        event_view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                calendarView.setVisibility(calendarView.isShown()
+//                        ? View.GONE
+//                        : View.VISIBLE);
+//            }
+//        });
+
+
+        fabcam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarView.setVisibility(calendarView.isShown()
-                        ? View.GONE
-                        : View.VISIBLE);
+                take_photo();
+                return;
             }
         });
         return view;
