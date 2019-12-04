@@ -63,7 +63,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.util.Map;
 
 
 public class HomeFragment extends Fragment {
@@ -82,18 +82,23 @@ public class HomeFragment extends Fragment {
     private static int RESULT_LOAD_IMG = 2;
 
 
-    File file;
-    File[] directoryListing ;
+    Map<String,?>prefIds;
 
     ArrayList<SharedPreferences> Events=new ArrayList<>(); //list of shared prefs
 
+    public Map<String,?> readMaster(){
+        SharedPreferences master= this.getActivity().getSharedPreferences("master",0);
+        Map<String,?>prefIds =master.getAll();
+        return prefIds;
+    }
 
     public void createEvents() {
-        if (directoryListing != null) {
-            Log.d("fileDebug","first");
-            for (File i : directoryListing) {
+        if (prefIds != null) {
+//            Log.d("fileDebug","first");
+            for (Map.Entry<String, ?> entry : prefIds.entrySet()) {
                 try {
-                    SharedPreferences Event = this.getActivity().getSharedPreferences(i.getName(), 0);
+                    String id=entry.getKey();
+                    SharedPreferences Event = this.getActivity().getSharedPreferences(id, 0);
                     if(Event!=null){
                         Events.add(Event);}
                 } catch (Exception exception) {
@@ -189,9 +194,6 @@ public class HomeFragment extends Fragment {
         final TextView event_view = view.findViewById(R.id.event_text);
         FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
         FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
-        file=this.getActivity().getExternalFilesDir("");
-        Log.d("fileDebug", "file path here: "+file.toString());
-        directoryListing=file.listFiles();
 
 
         fabcam.setOnClickListener((View v) -> {
@@ -215,18 +217,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String textDisplayed="";
+                ArrayList<String> toDisplay= new ArrayList<>();
+                readMaster();
                 createEvents();
                 allEventInfo();
                 Log.d("fileDebug","before event info");
-                for(File i:directoryListing){
-                    Log.d("fileDebug",i.getName());
-                    Log.d("fileDebug","hi");
-                }
-
-                Log.d("fileDebug",directoryListing.toString());
-
-                Log.d("fileDebug", Integer.toString(directoryListing.length));
-                //Log.d("fileDebug",Events.toString());
 
 
                 for(String[] info:allEventInfo){
@@ -244,10 +239,16 @@ public class HomeFragment extends Fragment {
 
                     if(String.valueOf(year).equals(info[2]) && String.valueOf(month + 1).equals(String.valueOf(toMonth(info[1])))&& day.equals(info[0])){
 
-                        textDisplayed= info[3]+":"+info[5]+"-"+info[4]+"\n";
+                        String text= info[3]+":"+info[5]+"-"+info[4]+"\n";
+                        if (!toDisplay.contains(text)){
+                            toDisplay.add(text);
+                        }
                         Log.d("fileDebug",textDisplayed+"dis my text ya");
                     }
                     else{Log.d("fileDebug","soemthign went wrong");}
+                }
+                for(String i:toDisplay){
+                    textDisplayed+=i;
                 }
 
 
