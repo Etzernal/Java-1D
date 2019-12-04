@@ -186,7 +186,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    TextView date_tv;
+    TextView date_events;
     TextView event_view;
     SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
@@ -267,7 +267,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String textDisplayed="";
-                ArrayList<String> toDisplay= new ArrayList<>();
+                ArrayList<String> toDisplay= new ArrayList<String>();
                 readMaster();
                 createEvents();
                 allEventInfo();
@@ -286,7 +286,7 @@ public class HomeFragment extends Fragment {
                     if (dayOfMonth<10){
                         day="0"+String.valueOf(dayOfMonth);
                     }
-                else{textDisplayed="";}}
+                    else{textDisplayed="";}
 
                     if(String.valueOf(year).equals(info[2]) && String.valueOf(month + 1).equals(String.valueOf(toMonth(info[1])))&& day.equals(info[0])){
 
@@ -298,16 +298,15 @@ public class HomeFragment extends Fragment {
                     }
                     else{Log.d("fileDebug","soemthign went wrong");}
                 }
-                for(String i:toDisplay){
+                for (String i:toDisplay){
                     textDisplayed+=i;
                 }
 
 
-
-                date_tv.setSingleLine(false);
-                date_tv.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
-                        + " \n" );
-//                date_tv.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
+                date_select.setSingleLine(false);
+                date_select.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year)
+                    + " \n" );
+//                date_events.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth)
 //                        + " \n" );
 
 //
@@ -319,7 +318,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        date_tv.setOnClickListener(new View.OnClickListener() {
+        date_events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendarView.setVisibility(calendarView.isShown()
