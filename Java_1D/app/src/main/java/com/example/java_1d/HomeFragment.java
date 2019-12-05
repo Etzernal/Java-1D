@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
     ArrayList<SharedPreferences> Events=new ArrayList<>(); //list of shared prefs
 
     public Map<String,?> readMaster(){
-        SharedPreferences master= this.getActivity().getSharedPreferences("master",0);
+        SharedPreferences master= this.getActivity().getSharedPreferences("master",Context.MODE_PRIVATE);
         Map<String,?>prefIds =master.getAll();
         return prefIds;
     }
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
             for (Map.Entry<String, ?> entry : prefIds.entrySet()) {
                 try {
                     String id=entry.getKey();
-                    SharedPreferences Event = this.getActivity().getSharedPreferences(id, 0);
+                    SharedPreferences Event = this.getActivity().getSharedPreferences(id, Context.MODE_PRIVATE);
                     if(Event!=null){
                         Events.add(Event);}
                 } catch (Exception exception) {
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String textDisplayed="";
                 ArrayList<String> toDisplay= new ArrayList<String>();
-                readMaster();
+                prefIds=readMaster();
                 createEvents();
                 allEventInfo();
                 Log.d("fileDebug","before event info");
