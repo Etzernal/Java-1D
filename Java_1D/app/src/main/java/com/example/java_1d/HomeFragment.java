@@ -136,7 +136,10 @@ public class HomeFragment extends Fragment {
         final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
         final FloatingActionButton fabadd = view.findViewById(R.id.floatingActionButtonAdd);
 
+        List<EventDay> events = new ArrayList<>();
+
         Calendar crrt = Calendar.getInstance();
+
         try {
             calendar.setDate(crrt);
         }
@@ -153,14 +156,22 @@ public class HomeFragment extends Fragment {
                 String eventInfoEntry = generateEventInfo(spid);
                 String fromDate = getFromDateFromSP(spid);
                 Map content = new HashMap();
+                int c_year = getYearFromDate(fromDate);
+                int c_month = getMonthFromDate(fromDate);
+                int c_day = getDayFromDate(fromDate);
                 content.put("info", eventInfoEntry);
-                content.put("year", getYearFromDate(fromDate));
-                content.put("month", getMonthFromDate(fromDate));
-                content.put("day", getDayFromDate(fromDate));
+                content.put("year", c_year);
+                content.put("month", c_month);
+                content.put("day", c_day);
                 Log.i("myDebug", content.toString());
                 entryContentMap.put(spid, content);
+                Calendar toAddEvents = Calendar.getInstance();
+                toAddEvents.set(c_year, c_month-1, c_day);
+                events.add(new EventDay(toAddEvents, R.drawable.ic_event));
             }
         }
+
+        calendar.setEvents(events);
 
         // initialize entry display
         entrySpace.removeAllViews();
