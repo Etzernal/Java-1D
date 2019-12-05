@@ -33,7 +33,6 @@ public class DraftsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_drafts, container, false);
         super.onCreate(savedInstanceState);
-//        view.setContentView(R.layout.fragment_drafts);
         drafts_space = view.findViewById(R.id.draft_space);
 
         // get the master SP and loop through its contents to generate entry
@@ -57,7 +56,6 @@ public class DraftsFragment extends Fragment {
                 Log.d("myLog", "button");
                 Intent intent = new Intent(getActivity(), SPCreator.class);
                 startActivity(intent);
-//                finish();
             }
         });
         return view;

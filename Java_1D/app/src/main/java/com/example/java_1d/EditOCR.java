@@ -148,7 +148,6 @@ public class EditOCR extends AppCompatActivity {
         String result = "";
         List<FirebaseVisionText.TextBlock> blocks = texts.getTextBlocks();
         if (blocks.size() == 0) {
-
             return result;
         }
 

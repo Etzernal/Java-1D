@@ -37,8 +37,9 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private photoCaptured pc = photoCaptured.getInstance();
+
     private static final int REQUEST_PICTURE_CAPTURE = 1;
-    CameraUtils cameraUtils = new CameraUtils(this);
     private static int RESULT_LOAD_IMG = 2;
 
     private Text user_email;
@@ -116,17 +117,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("myMessage", String.format("Request code %d, Result code %d, Data: %s", requestCode, resultCode, data.toString()));
         super.onActivityResult(requestCode, resultCode, data);
-        final ImageView thumbnailImg = (ImageView) findViewById(R.id.thumbnail);
 
         if (requestCode == REQUEST_PICTURE_CAPTURE && resultCode == RESULT_OK) {
-            Log.d("myMessage", "Im in onActivityResult take photo");
-            File imgFile = new File(cameraUtils.imgFilePath);
+            File imgFile = new File(pc.getImgPath());
             Uri photoURI = Uri.fromFile(imgFile);
-            Toast.makeText(this, "Photo saved to " + cameraUtils.imgFilePath, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Photo saved to " + pc.getImgPath(), Toast.LENGTH_LONG).show();
             if (imgFile.exists()) {
-                cameraUtils.galleryAddPic();
                 Intent changePage = new Intent(MainActivity.this, EditOCR.class);
                 changePage.putExtra("Image",photoURI.toString());
                 startActivity(changePage);

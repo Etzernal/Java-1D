@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Form extends AppCompatActivity {
-    private CameraUtils cameraUtils = new CameraUtils(this);
+    private photoCaptured pc = photoCaptured.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class Form extends AppCompatActivity {
             final String fromTime = fromTimeBtn.getText().toString();
             final String toTime = toTimeBtn.getText().toString();
             final boolean reminder = reminderSwitch.isChecked();
-            final String imgPath = cameraUtils.imgFilePath;
+            final String imgPath = pc.getImgPath();
 
             galleryUtils.savePref(sharedPref, title, location, description, fromDate, fromTime, toDate, toTime, reminder, imgPath);
             Log.i("myMessage", "title: " + title);
@@ -151,7 +151,7 @@ public class Form extends AppCompatActivity {
             if (image.exists()){
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
                 try {
-                    Bitmap processedBitmap = cameraUtils.processThumbnail(bitmap);
+                    Bitmap processedBitmap = pc.processThumbnail(bitmap);
                     thumbnailImg.setImageBitmap(processedBitmap);
                 } catch (IOException ioex){
                     Toast.makeText(Form.this, ioex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -225,8 +225,7 @@ public class Form extends AppCompatActivity {
         if (cameraIntent.resolveActivity(getPackageManager()) != null) {
             File pictureFile;
             try {
-                File f = this.getExternalFilesDir("");
-                pictureFile = cameraUtils.createUniqueImageFilename(f);
+                pictureFile = pc.createImageFile();
             } catch (IOException ex) {
                 Toast.makeText(this,
                         "Photo file can't be created, please try again",
@@ -245,16 +244,16 @@ public class Form extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         final ImageView thumbnailImg = (ImageView) findViewById(R.id.thumbnail);
         if (requestCode == REQUEST_PICTURE_CAPTURE && resultCode == RESULT_OK) {
-            File imgFile = new File(cameraUtils.imgFilePath);
-            Toast.makeText(this, "Photo saved to "+cameraUtils.imgFilePath, Toast.LENGTH_LONG).show();
+            File imgFile = new File(pc.getImgPath());
+            Toast.makeText(this, "Photo saved to "+ pc.getImgPath(), Toast.LENGTH_LONG).show();
             if(imgFile.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                cameraUtils.galleryAddPic();
                 // rotate the Bitmap in the correct orientation
                 try{
-                    Bitmap processedBitmap = cameraUtils.processThumbnail(myBitmap);
+                    Bitmap processedBitmap = pc.processThumbnail(myBitmap);
                     thumbnailImg.setImageBitmap(processedBitmap);
                 } catch (IOException ioex){
                     Toast.makeText(this, ioex.getMessage(), Toast.LENGTH_SHORT).show();
