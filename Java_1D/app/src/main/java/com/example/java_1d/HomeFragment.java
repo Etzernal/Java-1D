@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +27,13 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.DatePicker;
+import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.builders.DatePickerBuilder;
+import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.applandeo.materialcalendarview.listeners.OnSelectDateListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -40,6 +47,7 @@ import java.util.Date;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Locale;
 import android.util.Log;
 import java.util.Map;
@@ -138,13 +146,21 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        entrySpace = view.findViewById(R.id.entrySpace);
         calendar = view.findViewById(R.id.calendar_view);
+        entrySpace = view.findViewById(R.id.entrySpace);
         final TextView date_select = view.findViewById(R.id.selected_date);
         final CalendarView calendarView = view.findViewById(R.id.calendar_view);
         final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
         final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
         final FloatingActionButton fabadd = view.findViewById(R.id.floatingActionButtonAdd);
+
+        Calendar crrt = Calendar.getInstance();
+        try {
+            calendar.setDate(crrt);
+        }
+        catch (OutOfDateRangeException e) {
+            Log.d("init", "date error");
+        }
 
         // initialize ContentMap
         SharedPreferences master = getActivity().getSharedPreferences("master", MODE_PRIVATE);
@@ -166,13 +182,9 @@ public class HomeFragment extends Fragment {
 
         // initialize entry display
         entrySpace.removeAllViews();
-        long dateInLong = calendar.getDate();
-        Date crrtDate = new Date(dateInLong);
-        Calendar cld = Calendar.getInstance();
-        cld.setTime(crrtDate);
-        int year = cld.get(Calendar.YEAR);
-        int month = cld.get(Calendar.MONTH);
-        int day = cld.get(Calendar.DAY_OF_MONTH);
+        int year = crrt.get(Calendar.YEAR);
+        int month = crrt.get(Calendar.MONTH);
+        int day = crrt.get(Calendar.DAY_OF_MONTH);
 
         for(String k: entryContentMap.keySet()){
             Map entry = entryContentMap.get(k);
@@ -197,8 +209,6 @@ public class HomeFragment extends Fragment {
         fab_clock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_clkwise);
         fab_anticlock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_anticlkwise);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        date_select.setText(sdf.format(calendarView.getDate()));
 
         fabadd.setOnClickListener(new View.OnClickListener() {
             boolean isOpen = false;
@@ -238,9 +248,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+
+        calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+            public void onDayClick(EventDay eventDay) {
+                int year = eventDay.getCalendar().get(1);
+                int month = eventDay.getCalendar().get(2);
+                int dayOfMonth = eventDay.getCalendar().get(5);
                 entrySpace.removeAllViews();
                 // loop through the contentMap and find that matched entry to display
                 for(String k: entryContentMap.keySet()){
@@ -249,7 +264,7 @@ public class HomeFragment extends Fragment {
                     int m = (int) entry.get("month");
                     int d = (int) entry.get("day");
                     Log.i("myDebug", String.format("What I get: %d-%d-%d", y, m, d));
-                    Log.i("myDebug", String.format("Selected date: %d-%d-%d", year, month, dayOfMonth));
+//                    Log.i("myDebug", String.format("Selected date: %d-%d-%d", year, month, dayOfMonth));
                     if (year==y && month+1==m && dayOfMonth==d){
                         //display it!
                         ConstraintLayout cl = generateConstraintLayout(entry, k);
