@@ -49,6 +49,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
+    private static final int PICK_IMAGE = 300;
+
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private photoCaptured pc = photoCaptured.getInstance();
     private LinearLayout entrySpace;
@@ -102,36 +104,18 @@ public class HomeFragment extends Fragment {
 
     private int getYearFromDate(String fromDate){
         String[] s = fromDate.split("-");
-        return Integer.parseInt(s[2]);
+        String year = s[2].split(" ")[0];
+        return Integer.parseInt(year);
     }
 
     private int getMonthFromDate(String fromDate){
         String[] s = fromDate.split("-");
         String monthInText = s[1];
-        return getMonthNumFromText(monthInText.toLowerCase());
-
+        return new GalleryUtils(getContext()).getMonthNumFromText(monthInText.toLowerCase());
     }
     private int getDayFromDate(String fromDate){
         String[] s = fromDate.split("-");
         return Integer.parseInt(s[0]);
-    }
-
-    private int getMonthNumFromText(String month){
-        switch (month){
-            case("jan"): return 1;
-            case("feb"): return 2;
-            case("mar"): return 3;
-            case("apr"): return 4;
-            case("may"): return 5;
-            case("jun"): return 6;
-            case("jul"): return 7;
-            case("aug"): return 8;
-            case("sep"): return 9;
-            case("oct"): return 10;
-            case("nov"): return 11;
-            case("dec"): return 12;
-            default: return 0;
-        }
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -224,9 +208,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("content://media/external/images/media/"));
-                startActivity(intent);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
         fabcam.setOnClickListener(new View.OnClickListener() {
@@ -349,6 +333,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.i("myLog", String.format("Direct to entry editing page with ID <%s> ", k));
+                Intent intent = new Intent(getContext(), ViewEntry.class);
+                intent.putExtra("id", k);
+                getActivity().startActivity(intent);
             }
         });
 

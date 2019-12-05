@@ -39,50 +39,6 @@ public class GalleryUtils{
         this.context = context;
     }
 
-    /**
-     * Function to call out third-party calendar app and create an event
-     * @param title: title of the event
-     * @param location: location of the event
-     * @param begin: start date and time of the event
-     * @param end: end date and time of the event
-     */
-    void addEvent(String title, String location, long begin, long end) {
-        Intent intent = new Intent(Intent.ACTION_INSERT)
-                .setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.Events.TITLE, title)
-                .putExtra(CalendarContract.Events.EVENT_LOCATION, location)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end);
-        if (intent.resolveActivity(this.context.getPackageManager()) != null) {
-            this.context.startActivity(intent);
-        }
-    }
-
-    /**
-     * call this function to display current date
-     * @param dateBtn: the date button which you want to display the current date as the text
-     */
-    void displayCrrtDate(final Button dateBtn){
-        final Calendar cldr = Calendar.getInstance();
-        final int year = cldr.get(Calendar.YEAR);
-        final int month = cldr.get(Calendar.MONTH);
-        final int dayNum = cldr.get(Calendar.DAY_OF_MONTH);
-        final int day = cldr.get(Calendar.DAY_OF_WEEK);
-
-        String dayStr = convertDay(day);
-        dateBtn.setText(String.format("%s %02d/%02d/%04d", dayStr, dayNum, month+1, year));
-    }
-
-    /**
-     * call this function to display current time
-     * @param timeBtn: the time button which you want to display the current time as the text
-     */
-    void displayCrrtTime(final Button timeBtn){
-        final Calendar cldr = Calendar.getInstance();
-        final int hour = cldr.get(Calendar.HOUR_OF_DAY);
-        final int min = cldr.get(Calendar.MINUTE);
-        timeBtn.setText(String.format("%02d:%02d", hour, min));
-    }
 
     /**
      * bring out date picker component and let user choose a date to save for the date button
@@ -155,11 +111,11 @@ public class GalleryUtils{
      * @param fromTime: start time of the event
      * @param toDate: end date of the event
      * @param toTime: end time of the event
-     * @param reminder: set reminder or not. True: has reminder. False: has no reminder
+     * @param draft: True means is draft. False means is to be displayed in calendar
      */
     void savePref(String prefName, String title, String location, String description,
                   String fromDate, String fromTime, String toDate, String toTime,
-                  Boolean reminder, String imagePath){
+                  Boolean draft, String imagePath){
         SharedPreferences sharedPref = this.context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("title", title);
@@ -169,19 +125,10 @@ public class GalleryUtils{
         editor.putString("fromTime", fromTime);
         editor.putString("toDate", toDate);
         editor.putString("toTime", toTime);
-        editor.putBoolean("reminder", reminder);
+        editor.putBoolean("draft", draft);
         editor.putString("imgPath", imagePath);
         editor.apply();
         Toast.makeText(this.context, "Entry saved with ID: " + prefName, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * return a shared preference object
-     * @param prefName: the ID of shared preference to locate the object
-     * @return SharedPreferences object contains relevant data
-     */
-    SharedPreferences retrievePref(String prefName){
-        return this.context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
     }
 
     /**
@@ -189,36 +136,72 @@ public class GalleryUtils{
      * @param day: day of a week as Integer
      * @return day of a week as String
      */
-    String convertDay(int day) {
+    String convertDayOfWeek(int day) {
         String dayStr;
 
         switch (day) {
             case Calendar.MONDAY:
-                dayStr = "Monday";
+                dayStr = "Mon";
                 break;
             case Calendar.TUESDAY:
-                dayStr = "Tuesday";
+                dayStr = "Tue";
                 break;
             case Calendar.WEDNESDAY:
-                dayStr = "Wednesday";
+                dayStr = "Wed";
                 break;
             case Calendar.THURSDAY:
-                dayStr = "Thursday";
+                dayStr = "Thu";
                 break;
             case Calendar.FRIDAY:
-                dayStr = "Friday";
+                dayStr = "Fri";
                 break;
             case Calendar.SATURDAY:
-                dayStr = "Saturday";
+                dayStr = "Sat";
                 break;
             case Calendar.SUNDAY:
-                dayStr = "Sunday";
+                dayStr = "Sun";
                 break;
             default:
                 dayStr = "";
                 break;
         }
         return dayStr;
+    }
+
+    String convertMonth(int month){
+        switch (month){
+            case 0: return "Jan";
+            case 1: return "Feb";
+            case 2: return "Mar";
+            case 3: return "Apr";
+            case 4: return "May";
+            case 5: return "Jun";
+            case 6: return "Jul";
+            case 7: return "Aug";
+            case 8: return "Sep";
+            case 9: return "Oct";
+            case 10: return "Nov";
+            case 11: return "Dec";
+            default: return "";
+        }
+    }
+
+    int getMonthNumFromText(String month){
+        switch (month){
+            case("jan"): return 1;
+            case("feb"): return 2;
+            case("mar"): return 3;
+            case("apr"): return 4;
+            case("may"): return 5;
+            case("jun"): return 6;
+            case("jul"): return 7;
+            case("aug"): return 8;
+            case("sep"): return 9;
+            case("oct"): return 10;
+            case("nov"): return 11;
+            case("dec"): return 12;
+            default: return 0;
+        }
     }
 }
 

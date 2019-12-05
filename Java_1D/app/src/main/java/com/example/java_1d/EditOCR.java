@@ -68,7 +68,7 @@ public class EditOCR extends AppCompatActivity {
         final TextView testOCR = findViewById(R.id.testOCR);
 
         String image_path = getIntent().getStringExtra("Image");
-
+        Log.i("myDebug", String.format("EditOCR: image get: %s", image_path));
 
         //set selected image in imageView
         if (image_path != null) {
@@ -99,9 +99,6 @@ public class EditOCR extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
         // function to go to form page
         doneBtn.setOnClickListener((View v) -> {
             //Parse for Date and Time
@@ -116,7 +113,7 @@ public class EditOCR extends AppCompatActivity {
             endDate = getDateTime(finalText).get(2);
             endTime = getDateTime(finalText).get(3);
 
-            //Store into sharedpreference
+            //Store into sharedPreference
             File photofile = new File(fileUri.toString());
             String prefName = photofile.getName();
             SharedPreferences sharedPref = getSharedPreferences(prefName, 0); // 0 for private mode
@@ -210,7 +207,6 @@ public class EditOCR extends AppCompatActivity {
         finalList.add(endTime);
         return finalList;
     }
-
 }
 
 

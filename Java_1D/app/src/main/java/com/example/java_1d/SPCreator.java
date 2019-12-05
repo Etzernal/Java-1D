@@ -68,6 +68,8 @@ public class SPCreator extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                photoCaptured.getInstance().setImgPath("");
+
                 title = findViewById(R.id.title_entry);
                 fromDate = findViewById(R.id.fromDate);
                 toDate = findViewById(R.id.toDate);
@@ -93,7 +95,11 @@ public class SPCreator extends AppCompatActivity {
                 editor.putString("description", des.getText().toString());
                 editor.putString("location", loc.getText().toString());
                 editor.putBoolean("draft", true);
-                editor.putString("imgPath", photoCaptured.getInstance().getImgPath());
+                if (photoCaptured.getInstance().getImgPath() == null){
+                    editor.putString("imgPath", "");
+                } else {
+                    editor.putString("imgPath", photoCaptured.getInstance().getImgPath());
+                }
                 editor.apply();
 
                 Toast.makeText(SPCreator.this, "Draft saved with id: "+id, Toast.LENGTH_LONG).show();
@@ -103,6 +109,8 @@ public class SPCreator extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                photoCaptured.getInstance().setImgPath("");
+
                 title = findViewById(R.id.title_entry);
                 fromDate = findViewById(R.id.fromDate);
                 toDate = findViewById(R.id.toDate);
@@ -128,7 +136,11 @@ public class SPCreator extends AppCompatActivity {
                 editor.putString("description", des.getText().toString());
                 editor.putString("location", loc.getText().toString());
                 editor.putBoolean("draft", false);  // For confirmed entry, set this to false so that it is not recognised as draft
-                editor.putString("imgPath", photoCaptured.getInstance().getImgPath());
+                if (photoCaptured.getInstance().getImgPath() == null){
+                    editor.putString("imgPath", "");
+                } else {
+                    editor.putString("imgPath", photoCaptured.getInstance().getImgPath());
+                }
                 editor.apply();
 
                 Toast.makeText(SPCreator.this, "Entry confirmed with id: "+id, Toast.LENGTH_LONG).show();

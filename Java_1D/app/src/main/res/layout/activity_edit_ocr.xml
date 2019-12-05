@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".editOCR">
+    tools:context=".EditOCR">
 
 
     <ImageView
         android:id="@+id/imgEvent"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
+        android:layout_height="616dp" />
 
     <TextView
         android:layout_width="wrap_content"
