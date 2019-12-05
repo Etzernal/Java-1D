@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditOCR"></activity>
+        <activity android:name=".ViewEntry"></activity>
+        <activity android:name=".EditOCR" />
         <activity android:name=".Form" />
         <activity
             android:name=".MainActivity"
@@ -28,15 +29,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".SPCreator"></activity>
-
+        <activity android:name=".SPCreator" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -52,4 +54,5 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
     </application>
+
 </manifest>
