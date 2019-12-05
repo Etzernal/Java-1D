@@ -1,6 +1,8 @@
 package com.example.java_1d;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -37,14 +41,20 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int PERMIT_STORAGE = 400;
+    private static final int PERMIT_CAMERA = 401;
     private photoCaptured pc = photoCaptured.getInstance();
 
     private static final int REQUEST_PICTURE_CAPTURE = 1;
     private static int RESULT_LOAD_IMG = 2;
+    private static final int PICK_IMAGE = 300;
 
     private Text user_email;
     private String password = "password";
     private String username = "User";
+
+    private Boolean grantedCam;
+    private Boolean grantedStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +68,32 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         bottomNav.setSelectedItemId(R.id.action_home);
-        SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMIT_CAMERA);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMIT_STORAGE);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grandResults){
+        switch (requestCode){
+            case PERMIT_CAMERA: {
+                if(grandResults.length>0 && grandResults[0] == PackageManager.PERMISSION_GRANTED){
+                    grantedCam = true;
+                }
+            }
+
+            case PERMIT_STORAGE: {
+                if(grandResults.length>0 && grandResults[0] == PackageManager.PERMISSION_GRANTED){
+                    grantedStore = true;
+                }
+            }
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -120,10 +154,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_PICTURE_CAPTURE && resultCode == RESULT_OK) {
+            Log.i("myDebug", "Passing Camera taken photo to OCR...");
             File imgFile = new File(pc.getImgPath());
             Uri photoURI = Uri.fromFile(imgFile);
-            Toast.makeText(this, "Photo saved to " + pc.getImgPath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Photo saved to " + pc.getImgPath(), Toast.LENGTH_SHORT).show();
             if (imgFile.exists()) {
+                // pass the image file as String to EditOCR
                 Intent changePage = new Intent(MainActivity.this, EditOCR.class);
                 changePage.putExtra("Image",photoURI.toString());
                 startActivity(changePage);
@@ -131,8 +167,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-            Log.d("myMessage", "Switching intent to OCR...");
+        else if (requestCode == PICK_IMAGE && resultCode == RESULT_OK){
+            Log.i("myDebug", "Passing Gallery selected photo to OCR...");
+            Uri imageChosen = data.getData();
+            if (imageChosen != null){
+                Intent changePage = new Intent(MainActivity.this, EditOCR.class);
+                changePage.putExtra("Image",imageChosen.toString());
+                startActivity(changePage);
+                finish();
+            }
+        }
+
+        else if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
+            Log.i("myDebug", "Switching intent to OCR...");
             final Uri imageUri = data.getData();
             Intent changePage = new Intent(MainActivity.this, EditOCR.class);
             changePage.putExtra("Image",imageUri.toString());

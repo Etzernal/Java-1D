@@ -155,11 +155,11 @@ public class GalleryUtils{
      * @param fromTime: start time of the event
      * @param toDate: end date of the event
      * @param toTime: end time of the event
-     * @param reminder: set reminder or not. True: has reminder. False: has no reminder
+     * @param draft: True means is draft. False means is to be displayed in calendar
      */
     void savePref(String prefName, String title, String location, String description,
                   String fromDate, String fromTime, String toDate, String toTime,
-                  Boolean reminder, String imagePath){
+                  Boolean draft, String imagePath){
         SharedPreferences sharedPref = this.context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("title", title);
@@ -169,7 +169,7 @@ public class GalleryUtils{
         editor.putString("fromTime", fromTime);
         editor.putString("toDate", toDate);
         editor.putString("toTime", toTime);
-        editor.putBoolean("reminder", reminder);
+        editor.putBoolean("draft", draft);
         editor.putString("imgPath", imagePath);
         editor.apply();
         Toast.makeText(this.context, "Entry saved with ID: " + prefName, Toast.LENGTH_SHORT).show();

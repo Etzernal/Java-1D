@@ -49,6 +49,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
+    private static final int PICK_IMAGE = 300;
+
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private photoCaptured pc = photoCaptured.getInstance();
     private LinearLayout entrySpace;
@@ -224,9 +226,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("content://media/external/images/media/"));
-                startActivity(intent);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
         fabcam.setOnClickListener(new View.OnClickListener() {
