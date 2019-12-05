@@ -62,8 +62,8 @@ public class EditOCR extends AppCompatActivity {
 
         final Button doneBtn = findViewById(R.id.btnDone);
         final Button backBtn = findViewById(R.id.btnBack);
-        final Button venueBtn = findViewById(R.id.btnVenue);
-        final Button descBtn = findViewById(R.id.btnDesc);
+//        final Button venueBtn = findViewById(R.id.btnVenue);
+//        final Button descBtn = findViewById(R.id.btnDesc);
         final ImageView eventImg = findViewById(R.id.imgEvent);
         final TextView testOCR = findViewById(R.id.testOCR);
 
