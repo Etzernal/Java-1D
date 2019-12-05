@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.java_1d">
 
     <uses-feature
@@ -14,9 +15,22 @@
 
     <application
         android:allowBackup="true"
+<<<<<<< Updated upstream
         android:icon="@mipmap/kronos"
         android:label="Kronos"
         android:roundIcon="@mipmap/kronos_round"
+=======
+<<<<<<< HEAD
+        android:icon="@mipmap/kronos"
+        android:label="Kronos"
+        android:roundIcon="@mipmap/kronos_round"
+=======
+        android:icon="@mipmap/ic_launcher"
+        android:label="KRONOS"
+        tools:replace="android:label"
+        android:roundIcon="@mipmap/ic_launcher_round"
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewEntry"></activity>

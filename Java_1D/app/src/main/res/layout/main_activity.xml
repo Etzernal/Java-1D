@@ -6,14 +6,45 @@
     android:layout_height="match_parent"
     tools:context="com.example.java_1d.MainActivity">
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:theme="@style/AppTheme.AppBarOverlay">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="?attr/colorPrimary"/>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< Updated upstream
         android:layout_above="@+id/navigation"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp" />
+=======
+<<<<<<< HEAD
+        android:layout_above="@+id/navigation"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp" />
+=======
+        android:layout_above="@+id/navigation" />
+<!--    android:layout_marginTop="?attr/actionBarSize"-->
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         xmlns:android="http://schemas.android.com/apk/res/android"

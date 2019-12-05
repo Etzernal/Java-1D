@@ -60,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener((navListener));

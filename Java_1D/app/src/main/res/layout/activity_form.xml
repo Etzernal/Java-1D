@@ -30,6 +30,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
                 <ImageButton
                     android:id="@+id/shareButton"
                     android:layout_width="wrap_content"
@@ -38,6 +42,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="?attr/actionModeShareDrawable" />
+<<<<<<< Updated upstream
+=======
+=======
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
                 <ImageView
                     android:id="@+id/thumbnail"

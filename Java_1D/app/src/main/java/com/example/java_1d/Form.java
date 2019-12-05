@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.joestelmach.natty.Parser;
+
 import java.text.SimpleDateFormat;
 
 import java.io.File;
@@ -25,6 +28,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Form extends AppCompatActivity {
@@ -40,9 +44,19 @@ public class Form extends AppCompatActivity {
     private Button fromTimeBtn;
     private Button toDateBtn;
     private Button toTimeBtn;
+<<<<<<< Updated upstream
     private ImageButton shareBtn;
 
     private Boolean hasPhoto;
+=======
+<<<<<<< HEAD
+    private ImageButton shareBtn;
+
+    private Boolean hasPhoto;
+=======
+    private Button addCalendarBtn;
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +71,18 @@ public class Form extends AppCompatActivity {
         String fromTime = (String) extras.get("fromTime");
         String toDate = (String) extras.get("toDate");
         String toTime = (String) extras.get("toTime");
+<<<<<<< Updated upstream
         String des = (String) extras.get("description");
         String loc = (String) extras.get("location");
+=======
+<<<<<<< HEAD
+        String des = (String) extras.get("description");
+        String loc = (String) extras.get("location");
+=======
+        String des = (String) extras.get("des");
+        String loc = (String) extras.get("loc");
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
         String imgPath = (String) extras.get("imgPath");
 
         GalleryUtils galleryUtils = new GalleryUtils(Form.this);
@@ -70,6 +94,10 @@ public class Form extends AppCompatActivity {
         final int hour = cldr.get(Calendar.HOUR_OF_DAY);
         final int min = cldr.get(Calendar.MINUTE);
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
         saveButton = (Button) findViewById(R.id.saveBtn);
         confirmButton = (Button) findViewById(R.id.addCalendar);
         entryTitle = (EditText) findViewById(R.id.entryTitle);
@@ -112,11 +140,46 @@ public class Form extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
             try {
                 hasPhoto = true;
+<<<<<<< Updated upstream
+=======
+=======
+        String dayStr = galleryUtils.convertDay(day);
+
+        entryTitle.setText(title);
+        locationBox.setText(loc);
+        descriptionBox.setText(des);
+
+        // if date time not existing, set current date and time
+        if (fromDate == "") {
+            String date = fromDateBtn.getText().toString();
+            List<Date> parseDate = new Parser().parse(date).get(0).getDates();
+            Date parsedDate = parseDate.get(0);
+            cldr.setTime(parsedDate);
+        }
+        fromDateBtn.setText(fromDate);
+        fromTimeBtn.setText(fromTime);
+        toDateBtn.setText(toDate);
+        toTimeBtn.setText(toTime);
+
+        // get the image from imgPath and convert to Bitmap
+        final File image = new File(imgPath);
+        if (image.exists()){
+            Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
+            try {
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
                 Bitmap processedBitmap = pc.processThumbnail(bitmap);
                 thumbnailImg.setImageBitmap(processedBitmap);
             } catch (IOException ioex){
                 Toast.makeText(Form.this, ioex.getMessage(), Toast.LENGTH_SHORT).show();
+<<<<<<< Updated upstream
                 hasPhoto = false;
+=======
+<<<<<<< HEAD
+                hasPhoto = false;
+=======
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
                 thumbnailImg.setImageResource(R.drawable.placeholder);
             }
         } else {
@@ -125,6 +188,23 @@ public class Form extends AppCompatActivity {
         }
         // end of retrieving info
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+        saveButton = (Button) findViewById(R.id.saveBtn);
+        confirmButton = (Button) findViewById(R.id.confirmBtn);
+        entryTitle = (EditText) findViewById(R.id.entryTitle);
+        locationBox = (EditText) findViewById(R.id.locationBox);
+        descriptionBox = (EditText) findViewById(R.id.descriptionBox);
+        thumbnailImg = (ImageView) findViewById(R.id.thumbnail);
+        fromDateBtn = (Button) findViewById(R.id.fromDateBtn);
+        toDateBtn = (Button) findViewById(R.id.toDateBtn);
+        fromTimeBtn = (Button) findViewById(R.id.fromTimeBtn);
+        toTimeBtn = (Button) findViewById(R.id.toTimeBtn);
+        addCalendarBtn = (Button) findViewById(R.id.addCalendar);
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 
         //save info -> direct to HOME
         saveButton.setOnClickListener((View v) ->{
@@ -136,6 +216,10 @@ public class Form extends AppCompatActivity {
             final String xfromTime = fromTimeBtn.getText().toString();
             final String xtoTime = toTimeBtn.getText().toString();
             final String ximgPath = pc.getImgPath();
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
             if (xtitle.length() == 0){
                 Toast.makeText(Form.this, "Event title cannot be blanked!", Toast.LENGTH_SHORT).show();
             } else {
@@ -143,6 +227,14 @@ public class Form extends AppCompatActivity {
                 Intent direct = new Intent(Form.this, MainActivity.class);
                 startActivity(direct);
             }
+<<<<<<< Updated upstream
+=======
+=======
+            galleryUtils.savePref(id, xtitle, xloc, xdes, xfromDate, xfromTime, xtoDate, xtoTime, true, ximgPath);
+            Intent direct = new Intent(Form.this, MainActivity.class);
+            startActivity(direct);
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
         });
 
         //confirm info -> direct to HOME
@@ -157,6 +249,10 @@ public class Form extends AppCompatActivity {
                 final String xfromTime = fromTimeBtn.getText().toString();
                 final String xtoTime = toTimeBtn.getText().toString();
                 final String ximgPath = pc.getImgPath();
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
                 if (xtitle.length() == 0){
                     Toast.makeText(Form.this, "Event title cannot be blanked!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -164,6 +260,14 @@ public class Form extends AppCompatActivity {
                     Intent direct = new Intent(Form.this, MainActivity.class);
                     startActivity(direct);
                 }
+<<<<<<< Updated upstream
+=======
+=======
+                galleryUtils.savePref(id, xtitle, xloc, xdes, xfromDate, xfromTime, xtoDate, xtoTime, false, ximgPath);
+                Intent direct = new Intent(Form.this, MainActivity.class);
+                startActivity(direct);
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
             }
         });
 
@@ -187,6 +291,10 @@ public class Form extends AppCompatActivity {
             galleryUtils.saveTime(toTimeBtn);
         });
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
         shareBtn.setOnClickListener((View v) -> {
             final String xtitle = entryTitle.getText().toString();
             final String xlocation = locationBox.getText().toString();
@@ -242,6 +350,7 @@ public class Form extends AppCompatActivity {
             Form.this.recreate();
         }
     }
+<<<<<<< Updated upstream
 
     private String dateBuilder(int year, int month, int dayOfWeek, int dayOfMonth){
         GalleryUtils gu = new GalleryUtils(Form.this);
@@ -252,6 +361,18 @@ public class Form extends AppCompatActivity {
         return String.format("%02d:%02d", hour, minute);
     }
 
+=======
+
+    private String dateBuilder(int year, int month, int dayOfWeek, int dayOfMonth){
+        GalleryUtils gu = new GalleryUtils(Form.this);
+        return String.format("%02d-%s-%d %s", dayOfMonth, gu.convertMonth(month), year, gu.convertDayOfWeek(dayOfWeek));
+    }
+
+    private String timeBuilder(int hour, int minute){
+        return String.format("%02d:%02d", hour, minute);
+    }
+
+>>>>>>> Stashed changes
     private void take_photo(String spid) {
         pc.setContext(Form.this);
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -279,4 +400,10 @@ public class Form extends AppCompatActivity {
             }
         }
     }
+<<<<<<< Updated upstream
+=======
+=======
+    }
+>>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
 }
