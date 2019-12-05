@@ -344,11 +344,14 @@ public class HomeFragment extends Fragment {
         constraintSet.connect(infoDisplay.getId(), ConstraintSet.LEFT, thumbnail.getId(), ConstraintSet.RIGHT);
         constraintSet.applyTo(constraintLayout);
 
-        // TODO: on-click bring up a list of
+
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("myLog", String.format("Direct to entry editing page with ID <%s> ", k));
+                Intent intent = new Intent(getContext(), ViewEntry.class);
+                intent.putExtra("id", k);
+                startActivity(intent);
             }
         });
 

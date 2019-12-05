@@ -13,7 +13,7 @@ import net.fortuna.ical4j.model.property.Description;
 
 public class ViewEntry extends AppCompatActivity {
 
-    private static final int GET_VIEW_ENTRY = 400;
+    private static final int GET_VIEW_ENTRY = 500;
     private Button editBtn;
     private String spid;  // SharedPreferences ID
     private String toDisplay;
@@ -25,6 +25,7 @@ public class ViewEntry extends AppCompatActivity {
 
     //shared pref
     public void displayInfo(){
+        toDisplay="";
         SharedPreferences mypref= getSharedPreferences(spid, 0);
         if (mypref!=null){
             String title = mypref.getString("title", "");
@@ -34,10 +35,10 @@ public class ViewEntry extends AppCompatActivity {
             String fromTime = mypref.getString("fromTime", "");
             String toTime = mypref.getString("toTime", "");
             String desc=mypref.getString("description","");
-            toDisplay+=title;
-            toDisplay+="Location: "+location;
-            toDisplay+="Time: "+fromTime+"-"+toTime;
-            toDisplay+="Description: "+desc;
+            toDisplay+="Title:  "+title+"\n\n";
+            toDisplay+="Location:  "+location+"\n\n";
+            toDisplay+="Time:  "+fromTime+"-"+toTime+"\n\n";
+            toDisplay+="Description:  "+desc;
 
 
         }
@@ -45,6 +46,7 @@ public class ViewEntry extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        spid=getIntent().getStringExtra("id");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_entry);
         displayInfo();
@@ -61,12 +63,12 @@ public class ViewEntry extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GET_VIEW_ENTRY && resultCode == RESULT_OK){
-            spid = data.getStringExtra("id");  // this is the SP id
-
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == GET_VIEW_ENTRY && resultCode == RESULT_OK){
+//            spid = data.getStringExtra("id");  // this is the SP id
+//
+//        }
+//    }
 }
