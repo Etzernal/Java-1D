@@ -29,6 +29,7 @@
 <!--        android:layout_marginTop="0dp" />-->
     <ScrollView
         android:layout_width="match_parent"
+<<<<<<< Updated upstream
         android:layout_height="wrap_content"
         android:id="@+id/cal_layout">
 
@@ -40,6 +41,10 @@
 
     </ScrollView>
 
+=======
+        android:layout_height="300dp"
+        android:layout_marginTop="0dp" />
+>>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/selected_date"
@@ -81,11 +86,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="130dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_camera"
         android:focusable="true"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtongal"
@@ -97,11 +102,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="188dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
         android:focusable="true"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonAdd"
@@ -118,6 +123,21 @@
         app:srcCompat="@android:drawable/ic_input_add"
         android:focusable="true"
         android:tint="@color/white"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonAddBlank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="70dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:visibility="invisible" />
 
 
 </RelativeLayout>

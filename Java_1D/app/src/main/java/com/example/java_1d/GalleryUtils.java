@@ -45,31 +45,7 @@ public class GalleryUtils{
      * @param dateBtn: date button
      */
     void saveDate(final Button dateBtn){
-        Calendar cldr = Calendar.getInstance();
-        int year = cldr.get(Calendar.YEAR);
-        int month = cldr.get(Calendar.MONTH);
-        int dayNum = cldr.get(Calendar.DAY_OF_MONTH);
-        if (dateBtn.getText() != null) {
-            String date = dateBtn.getText().toString();
-            List<Date> parseDate = new Parser().parse(date).get(0).getDates();
-            Date parsedDate = parseDate.get(0);
-            cldr.setTime(parsedDate);
-            year = cldr.get(Calendar.YEAR);
-            month = cldr.get(Calendar.MONTH);
-            dayNum = cldr.get(Calendar.DAY_OF_MONTH);
-        }
-        final DatePickerDialog picker = new DatePickerDialog(this.context,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Date date = new Date(year-1900, month, dayOfMonth);
-                        Log.d("GalleryUtils", date.toString());
-                        String dayStr = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
-                        String monthStr = new SimpleDateFormat("MMM", Locale.ENGLISH).format(date);
-                        dateBtn.setText(String.format("%02d-%s-%04d %s", dayOfMonth, monthStr, year, dayStr));
-                    }
-                }, year, month, dayNum);
-        picker.show();
+
     }
 
     /**
@@ -102,6 +78,7 @@ public class GalleryUtils{
     }
 
     /**
+<<<<<<< Updated upstream
      * save data into shared preferences as key-value pairs
      * @param prefName: the ID of the shared preference object
      * @param title: title of the event
@@ -132,6 +109,8 @@ public class GalleryUtils{
     }
 
     /**
+=======
+>>>>>>> Stashed changes
      * to convert day as integer number to its corresponding day as String
      * @param day: day of a week as Integer
      * @return day of a week as String

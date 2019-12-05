@@ -6,4 +6,6 @@
     <color name="white">#ffff</color>
     <color name="grey_20">#cccccc</color>
     <color name="grey_80">#37474F</color>
+    <color name="error">#fa5252</color>
+    <color name="black">#000</color>
 </resources>

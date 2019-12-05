@@ -3,6 +3,10 @@ package com.example.java_1d;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+<<<<<<< Updated upstream
+=======
+import android.app.DatePickerDialog;
+>>>>>>> Stashed changes
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,6 +18,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -45,6 +50,7 @@ public class Form extends AppCompatActivity {
     private Button toDateBtn;
     private Button toTimeBtn;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private ImageButton shareBtn;
 
     private Boolean hasPhoto;
@@ -57,6 +63,13 @@ public class Form extends AppCompatActivity {
     private Button addCalendarBtn;
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
 >>>>>>> Stashed changes
+=======
+    private ImageButton shareBtn;
+    private String spid;
+
+    private Boolean hasPhoto;
+    private Boolean canSubmit;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +78,17 @@ public class Form extends AppCompatActivity {
 
         // get this bundle from either ViewEntry or EditOCR
         Bundle extras = getIntent().getExtras();
+<<<<<<< Updated upstream
         String id = (String) extras.get("id");
+=======
+        spid = (String) extras.get("id");
+>>>>>>> Stashed changes
         String title = (String) extras.get("title");
         String fromDate = (String) extras.get("fromDate");
         String fromTime = (String) extras.get("fromTime");
         String toDate = (String) extras.get("toDate");
         String toTime = (String) extras.get("toTime");
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         String des = (String) extras.get("description");
         String loc = (String) extras.get("location");
@@ -82,6 +100,10 @@ public class Form extends AppCompatActivity {
         String des = (String) extras.get("des");
         String loc = (String) extras.get("loc");
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
+=======
+        String des = (String) extras.get("description");
+        String loc = (String) extras.get("location");
 >>>>>>> Stashed changes
         String imgPath = (String) extras.get("imgPath");
 
@@ -95,8 +117,11 @@ public class Form extends AppCompatActivity {
         final int min = cldr.get(Calendar.MINUTE);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         saveButton = (Button) findViewById(R.id.saveBtn);
         confirmButton = (Button) findViewById(R.id.addCalendar);
@@ -115,12 +140,20 @@ public class Form extends AppCompatActivity {
         Log.d("myDebug", String.format("fromDate: %s", fromDate));
 
         // if date time not existing, set current date and time dd:MMM:yyyy EE
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         if (fromDate.length() == 0) {
             fromDateBtn.setText(dateBuilder(year, month, dayNum, day));
         } else { fromDateBtn.setText(fromDate); }
 
         if (toDate.length() == 0) {
+<<<<<<< Updated upstream
             toDateBtn.setText(dateBuilder(year, month, day, dayNum));
+=======
+            toDateBtn.setText(dateBuilder(year, month, dayNum, day));
+>>>>>>> Stashed changes
         } else { toDateBtn.setText(toDate); }
 
         if (fromTime.length() == 0) {
@@ -136,6 +169,7 @@ public class Form extends AppCompatActivity {
 
         Log.d("myDebug", "Image Path: "+imgPath+"Length of imgPath"+imgPath.length());
         // get the image from imgPath and convert to Bitmap
+<<<<<<< Updated upstream
         if (imgPath.length() == 0){
             Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
             try {
@@ -180,6 +214,28 @@ public class Form extends AppCompatActivity {
 =======
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
 >>>>>>> Stashed changes
+=======
+        if (imgPath.length() != 0){
+            Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
+            try {
+                hasPhoto = true;
+                Bitmap processedBitmap = pc.processThumbnail(bitmap, imgPath);
+                thumbnailImg.setImageBitmap(processedBitmap);
+            } catch (IOException ioex){
+                Toast.makeText(Form.this, ioex.getMessage(), Toast.LENGTH_SHORT).show();
+                hasPhoto = false;
+                thumbnailImg.setImageResource(R.drawable.placeholder);
+            }
+        } else if (photoCaptured.getInstance().getImgPath() != null && imgPath.length() == 0){
+            try {
+                hasPhoto = true;
+                String ip = photoCaptured.getInstance().getImgPath();
+                Bitmap processedBitmap = pc.processThumbnail(BitmapFactory.decodeFile(ip), ip);
+                thumbnailImg.setImageBitmap(processedBitmap);
+            } catch (IOException ioex){
+                Toast.makeText(Form.this, ioex.getMessage(), Toast.LENGTH_SHORT).show();
+                hasPhoto = false;
+>>>>>>> Stashed changes
                 thumbnailImg.setImageResource(R.drawable.placeholder);
             }
         } else {
@@ -188,6 +244,7 @@ public class Form extends AppCompatActivity {
         }
         // end of retrieving info
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
@@ -235,6 +292,35 @@ public class Form extends AppCompatActivity {
             startActivity(direct);
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
 >>>>>>> Stashed changes
+=======
+        //save info -> direct to HOME
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String xtitle = entryTitle.getText().toString();
+                final String xloc = locationBox.getText().toString();
+                final String xdes = descriptionBox.getText().toString();
+                final String xfromDate = fromDateBtn.getText().toString();
+                final String xtoDate = toDateBtn.getText().toString();
+                final String xfromTime = fromTimeBtn.getText().toString();
+                final String xtoTime = toTimeBtn.getText().toString();
+                final String ximgPath = pc.getImgPath();
+                if (xtitle.length() == 0){
+                    Toast.makeText(Form.this, "Event title cannot be blanked!", Toast.LENGTH_SHORT).show();
+                } else if (!canSubmit){
+                    Toast.makeText(Form.this, "There is error in your dates!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (spid.length() == 0){
+                        String crrtDateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                        spid = "KRONOS_"+crrtDateTime;
+                    }
+                    saveSP(spid, xtitle, xfromDate, xtoDate, xfromTime, xtoTime, xdes, xloc, ximgPath,true);
+                    Intent direct = new Intent(Form.this, MainActivity.class);
+                    startActivity(direct);
+                }
+            }
+>>>>>>> Stashed changes
         });
 
         //confirm info -> direct to HOME
@@ -249,6 +335,7 @@ public class Form extends AppCompatActivity {
                 final String xfromTime = fromTimeBtn.getText().toString();
                 final String xtoTime = toTimeBtn.getText().toString();
                 final String ximgPath = pc.getImgPath();
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
@@ -268,12 +355,64 @@ public class Form extends AppCompatActivity {
                 startActivity(direct);
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
 >>>>>>> Stashed changes
+=======
+                if (xtitle.length() == 0 ){
+                    Toast.makeText(Form.this, "Event title cannot be blanked!", Toast.LENGTH_SHORT).show();
+                } else if (!canSubmit){
+                    Toast.makeText(Form.this, "There is error in your dates!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (spid.length() == 0){
+                        spid = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                    }
+                    saveSP(spid, xtitle, xfromDate, xtoDate, xfromTime, xtoTime, xdes, xloc, ximgPath, false);
+                    Intent direct = new Intent(Form.this, MainActivity.class);
+                    startActivity(direct);
+                }
+>>>>>>> Stashed changes
             }
         });
 
         //set from date
         fromDateBtn.setOnClickListener((View v) -> {
+<<<<<<< Updated upstream
             galleryUtils.saveDate(fromDateBtn);
+=======
+            String date = fromDateBtn.getText().toString();
+            List<Date> parseDate = new Parser().parse(date).get(0).getDates();
+            Date parsedDate = parseDate.get(0);
+            cldr.setTime(parsedDate);
+            int y = cldr.get(Calendar.YEAR);
+            int m = cldr.get(Calendar.MONTH);
+            int d = cldr.get(Calendar.DAY_OF_MONTH);
+            final DatePickerDialog picker = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            Date date = new Date(year-1900, month, dayOfMonth);
+                            String dayStr = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
+                            String monthStr = new SimpleDateFormat("MMM", Locale.ENGLISH).format(date);
+                            fromDateBtn.setText(String.format("%02d-%s-%04d %s", dayOfMonth, monthStr, year, dayStr));
+                            String fromDateString = fromDateBtn.getText().toString();
+                            String toDateString = toDateBtn.getText().toString();
+                            try {
+                                Date fromDate = new SimpleDateFormat("dd-MMM-yyyy EE").parse(fromDateString);
+                                Date toDate = new SimpleDateFormat("dd-MMM-yyyy EE").parse(toDateString);
+                                if (isBefore(toDate, fromDate)){
+                                    canSubmit = false;
+                                    Toast.makeText(Form.this, "To Date cannot be before From Date!", Toast.LENGTH_LONG).show();
+                                    toDateBtn.setTextColor(getResources().getColor(R.color.error));
+                                } else {
+                                    canSubmit = true;
+                                    toDateBtn.setTextColor(getResources().getColor(R.color.black));
+                                }
+                            } catch (ParseException parEx){
+                                Toast.makeText(Form.this, "Unable to parse the date string into Date object. Fail to compare...", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, y, m, d);
+            picker.show();
+>>>>>>> Stashed changes
         });
 
         //set from time
@@ -283,7 +422,48 @@ public class Form extends AppCompatActivity {
 
         //set to date
         toDateBtn.setOnClickListener((View v) -> {
+<<<<<<< Updated upstream
             galleryUtils.saveDate(toDateBtn);
+=======
+//            Calendar cldr = Calendar.getInstance();
+//            int year = cldr.get(Calendar.YEAR);
+//            int month = cldr.get(Calendar.MONTH);
+//            int dayNum = cldr.get(Calendar.DAY_OF_MONTH);
+            String date = toDateBtn.getText().toString();
+            List<Date> parseDate = new Parser().parse(date).get(0).getDates();
+            Date parsedDate = parseDate.get(0);
+            cldr.setTime(parsedDate);
+            int y = cldr.get(Calendar.YEAR);
+            int m = cldr.get(Calendar.MONTH);
+            int d = cldr.get(Calendar.DAY_OF_MONTH);
+            final DatePickerDialog picker = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Date date = new Date(year-1900, month, dayOfMonth);
+                        String dayStr = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
+                        String monthStr = new SimpleDateFormat("MMM", Locale.ENGLISH).format(date);
+                        toDateBtn.setText(String.format("%02d-%s-%04d %s", dayOfMonth, monthStr, year, dayStr));
+                        String fromDateString = fromDateBtn.getText().toString();
+                        String toDateString = toDateBtn.getText().toString();
+                        try {
+                            Date fromDate = new SimpleDateFormat("dd-MMM-yyyy EE").parse(fromDateString);
+                            Date toDate = new SimpleDateFormat("dd-MMM-yyyy EE").parse(toDateString);
+                            if (isBefore(toDate, fromDate)){
+                                canSubmit = false;
+                                Toast.makeText(Form.this, "To Date cannot be before From Date!", Toast.LENGTH_LONG).show();
+                                toDateBtn.setTextColor(getResources().getColor(R.color.error));
+                            } else {
+                                canSubmit = true;
+                                toDateBtn.setTextColor(getResources().getColor(R.color.black));
+                            }
+                        } catch (ParseException parEx){
+                            Toast.makeText(Form.this, "Unable to parse the date string into Date object. Fail to compare...", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, y, m, d);
+            picker.show();
+>>>>>>> Stashed changes
         });
 
         //set to time
@@ -292,8 +472,11 @@ public class Form extends AppCompatActivity {
         });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         shareBtn.setOnClickListener((View v) -> {
             final String xtitle = entryTitle.getText().toString();
@@ -309,10 +492,17 @@ public class Form extends AppCompatActivity {
             final String toDateTime = xtoDate + " " + xtoTime;
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy EE hh:mm", Locale.ENGLISH);
             try{
+<<<<<<< Updated upstream
                 Date from = formatter.parse(fromDateTime);
                 Date to = formatter.parse(toDateTime);
                 long fromTimeMilli = from.getTime();
                 long toTimeMilli = to.getTime();
+=======
+                Date fromDT = formatter.parse(fromDateTime);
+                Date toDT = formatter.parse(toDateTime);
+                long fromTimeMilli = fromDT.getTime();
+                long toTimeMilli = toDT.getTime();
+>>>>>>> Stashed changes
                 Intent intent = new Intent(Intent.ACTION_INSERT)
                         .setData(CalendarContract.Events.CONTENT_URI)
                         .putExtra(CalendarContract.Events.TITLE, xtitle)
@@ -336,7 +526,11 @@ public class Form extends AppCompatActivity {
                 Log.i("myDebug", hasPhoto.toString());
                 if (!hasPhoto){
                     Log.i("myDebug", "Don't have photo, take a photo!");
+<<<<<<< Updated upstream
                     take_photo(id);
+=======
+                    take_photo(spid);
+>>>>>>> Stashed changes
                 }
             }
         });
@@ -346,16 +540,27 @@ public class Form extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_PICTURE_CAPTURE && resultCode == RESULT_OK){
+<<<<<<< Updated upstream
             Log.i("myDebug", "New Image: "+photoCaptured.getInstance().getImgPath());
             Form.this.recreate();
         }
     }
 <<<<<<< Updated upstream
+=======
+            SharedPreferences entrySP = getSharedPreferences(spid, MODE_PRIVATE);
+            SharedPreferences.Editor ed = entrySP.edit();
+            ed.putString("imgPath", pc.getImgPath());
+            ed.apply();
+            Form.this.recreate();
+        }
+    }
+>>>>>>> Stashed changes
 
     private String dateBuilder(int year, int month, int dayOfWeek, int dayOfMonth){
         GalleryUtils gu = new GalleryUtils(Form.this);
         return String.format("%02d-%s-%d %s", dayOfMonth, gu.convertMonth(month), year, gu.convertDayOfWeek(dayOfWeek));
     }
+<<<<<<< Updated upstream
 
     private String timeBuilder(int hour, int minute){
         return String.format("%02d:%02d", hour, minute);
@@ -373,6 +578,13 @@ public class Form extends AppCompatActivity {
     }
 
 >>>>>>> Stashed changes
+=======
+
+    private String timeBuilder(int hour, int minute){
+        return String.format("%02d:%02d", hour, minute);
+    }
+
+>>>>>>> Stashed changes
     private void take_photo(String spid) {
         pc.setContext(Form.this);
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -382,8 +594,15 @@ public class Form extends AppCompatActivity {
             try {
                 pictureFile = pc.createImageFile();
                 SharedPreferences entrySP = getSharedPreferences(spid, MODE_PRIVATE);
+<<<<<<< Updated upstream
                 SharedPreferences.Editor ed = entrySP.edit();
                 ed.putString("imgPath", pc.getImgPath());
+=======
+                Log.d("myDebug", "Current stored ImgPath in SP: "+entrySP.getString("imgPath", "no path"));
+                SharedPreferences.Editor ed = entrySP.edit();
+                ed.putString("imgPath", pictureFile.getAbsolutePath());
+                Log.d("myDebug", "Now stored ImgPath in SP: "+entrySP.getString("imgPath", "no path"));
+>>>>>>> Stashed changes
                 ed.apply();
             } catch (IOException ex) {
                 Toast.makeText(this,
@@ -401,9 +620,47 @@ public class Form extends AppCompatActivity {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
     }
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
+=======
+
+    private Boolean isBefore(Date date1, Date date2){
+        int res = date1.compareTo(date2);
+        if (res < 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void saveSP(String id, String title, String fromDate,
+                        String toDate, String fromTime, String toTime,
+                        String des, String loc, String imgPath, Boolean isDraft){
+        SharedPreferences master = getSharedPreferences("master", MODE_PRIVATE);
+        SharedPreferences.Editor masterEditor = master.edit();
+        masterEditor.putString(id, id);
+        masterEditor.apply();
+
+        SharedPreferences entrySP = getSharedPreferences(id, MODE_PRIVATE);
+        SharedPreferences.Editor editor = entrySP.edit();
+        editor.putString("title", title);
+        editor.putString("fromDate", fromDate);
+        editor.putString("toDate", toDate);
+        editor.putString("fromTime", fromTime);
+        editor.putString("toTime", toTime);
+        editor.putString("description", des);
+        editor.putString("location", loc);
+        editor.putBoolean("draft", isDraft);
+        if (photoCaptured.getInstance().getImgPath() == null){
+            editor.putString("imgPath", imgPath);
+        } else {
+            editor.putString("imgPath", photoCaptured.getInstance().getImgPath());
+        }
+        editor.apply();
+    }
 >>>>>>> Stashed changes
 }

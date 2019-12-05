@@ -135,6 +135,7 @@ public class HomeFragment extends Fragment {
         final FloatingActionButton fabcam = view.findViewById(R.id.floatingActionButtoncam);
         final FloatingActionButton fabgal = view.findViewById(R.id.floatingActionButtongal);
         final FloatingActionButton fabadd = view.findViewById(R.id.floatingActionButtonAdd);
+        final FloatingActionButton fabaddEntry = view.findViewById(R.id.floatingActionButtonAddBlank);
 
         Calendar crrt = Calendar.getInstance();
         try {
@@ -200,16 +201,20 @@ public class HomeFragment extends Fragment {
                 if (isOpen) {
                     fabgal.startAnimation(fab_close);
                     fabcam.startAnimation(fab_close);
+                    fabaddEntry.startAnimation(fab_close);
                     fabadd.startAnimation(fab_anticlock);
                     fabgal.setClickable(false);
                     fabcam.setClickable(false);
+                    fabaddEntry.setClickable(false);
                     isOpen = false;
                 } else {
                     fabgal.startAnimation(fab_open);
                     fabcam.startAnimation(fab_open);
+                    fabaddEntry.startAnimation(fab_open);
                     fabadd.startAnimation(fab_clock);
                     fabgal.setClickable(true);
                     fabcam.setClickable(true);
+                    fabaddEntry.setClickable(true);
                     isOpen = true;
                 }
             }
@@ -227,6 +232,24 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 take_photo();
+            }
+        });
+        fabaddEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToForm = new Intent(getContext(), Form.class);
+                Bundle extras = new Bundle();
+                extras.putString("id", "");
+                extras.putString("title", "");
+                extras.putString("location", "");
+                extras.putString("description", "");
+                extras.putString("fromDate", "");
+                extras.putString("toDate", "");
+                extras.putString("fromTime", "");
+                extras.putString("toTime", "");
+                extras.putString("imgPath", "");
+                goToForm.putExtras(extras);
+                getActivity().startActivity(goToForm);
             }
         });
 
@@ -325,6 +348,11 @@ public class HomeFragment extends Fragment {
         } else {
             File imgFile = new File(imgPath);
             Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            try {
+                bitmap = photoCaptured.getInstance().processThumbnail(bitmap, imgPath);
+            } catch (IOException ioex2){
+                Toast.makeText(getContext(), "Ooops... Something went wrong with the photos...", Toast.LENGTH_SHORT).show();
+            }
             thumbnail.setImageBitmap(bitmap);
         }
 
@@ -343,7 +371,6 @@ public class HomeFragment extends Fragment {
         constraintSet.connect(infoDisplay.getId(), ConstraintSet.LEFT, thumbnail.getId(), ConstraintSet.RIGHT);
         constraintSet.applyTo(constraintLayout);
 
-        // TODO: on-click bring up a list of
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

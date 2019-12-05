@@ -16,6 +16,7 @@
     <application
         android:allowBackup="true"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         android:icon="@mipmap/kronos"
         android:label="Kronos"
         android:roundIcon="@mipmap/kronos_round"
@@ -30,6 +31,11 @@
         tools:replace="android:label"
         android:roundIcon="@mipmap/ic_launcher_round"
 >>>>>>> 72aa16caf562693ea94c1e15d45aaf88231d353f
+>>>>>>> Stashed changes
+=======
+        android:icon="@mipmap/kronos"
+        android:label="Kronos"
+        android:roundIcon="@mipmap/kronos_round"
 >>>>>>> Stashed changes
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

@@ -18,8 +18,7 @@ class photoCaptured {
         return ourInstance;
     }
 
-    private photoCaptured() {
-    }
+    private photoCaptured() {}
 
     public String getImgPath(){
         return imgPath;
@@ -49,8 +48,8 @@ class photoCaptured {
                 matrix, true);
     }
 
-    public Bitmap processThumbnail(Bitmap myBitmap) throws IOException {
-        ExifInterface ei = new ExifInterface(imgPath);
+    public Bitmap processThumbnail(Bitmap myBitmap, String path) throws IOException {
+        ExifInterface ei = new ExifInterface(path);
         int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_UNDEFINED);
 
