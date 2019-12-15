@@ -50,7 +50,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".SPCreator" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

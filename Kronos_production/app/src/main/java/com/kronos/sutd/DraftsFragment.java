@@ -50,16 +50,6 @@ public class DraftsFragment extends Fragment {
                 index ++;
             }
         }
-
-        toSPBtn = view.findViewById(R.id.toSPCreator);
-        toSPBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("myLog", "button");
-                Intent intent = new Intent(getActivity(), SPCreator.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 
